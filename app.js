@@ -39,7 +39,7 @@ if ('development' == app.get('env')) {
 passport.use(new FacebookStrategy({
     clientID: 493919190675289,
     clientSecret: 'a3db1fbac3d4907b207ba3dd980e74e1',
-    callbackURL: "http://www.example.com/auth/facebook/callback"
+    callbackURL: "http://tutemac.local:3000/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, done) {
     // NOTE: You'll probably want to associate the facebook profile with a user record in your application's DB.
