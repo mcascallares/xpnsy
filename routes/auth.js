@@ -1,6 +1,5 @@
 exports.account = function(req, res) {
-	console.log(req.user);
-	res.send('Hello ' + req.user);
+	res.send('Hello ' + req.user.info.username);
 };
 
 exports.login = function(req, res) {

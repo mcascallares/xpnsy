@@ -7,6 +7,7 @@ var express = require('express')
 	, passport = require('passport')
 	, ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn
 	, FacebookStrategy = require('passport-facebook').Strategy
+  , user = require('./models/user')
   , routes = require('./routes')
   , auth = require('./routes/auth')
   , http = require('http')
@@ -35,26 +36,35 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-// custom for passport, put this in other place?
+// authentication
+passport.serializeUser(function(userSessionInfo, done) { done(null, userSessionInfo); });
+passport.deserializeUser(function(userSessionInfo, done) { done(null, userSessionInfo); });
+
 passport.use(new FacebookStrategy({
     clientID: 493919190675289,
     clientSecret: 'a3db1fbac3d4907b207ba3dd980e74e1',
     callbackURL: "http://tutemac.local:3000/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, done) {
-    // NOTE: You'll probably want to associate the facebook profile with a user record in your application's DB.
-    var user = profile;
-    return done(null, user);
-  }
-));
+    user.UserModel.findOrCreate({provider: profile.provider, providerId: profile.id}, 
+      function(err, user, created) {
+        if (err) { return done(err); }
+        // build the user session to avoid sync info between social provider and our db
+        done(null, { 
+          id:user.id, 
+          info: {
+            provider: profile.provider,
+            providerId: profile.id,
+            username: profile.username,
+            displayName: profile.displayName,
+            name: profile.name,
+            link: profile.link,
+            gender: profile.gender
+          }
+        });
+    });  
+}));
 
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
-
-passport.deserializeUser(function(obj, done) {
-  done(null, obj);
-});
 
 // route mapping
 app.get('/', routes.index);
