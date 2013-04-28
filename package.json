@@ -9,6 +9,7 @@
     "express": "3.2.0",
     "hjs": "0.0.4",
     "less-middleware": "0.1.11",
+    "mongoose":"3.6.8",
     "passport": "0.1.16",
     "connect-ensure-login": "0.1.0",
     "passport-facebook": "*"
