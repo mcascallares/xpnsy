@@ -10,24 +10,16 @@
 
   <!-- Set the viewport width to device width for mobile -->
   <meta name="viewport" content="width=device-width" />
-
   <title>Welcome to Foundation | Feed</title>
-  
-  <!-- Included CSS Files (Uncompressed) -->
-  <!--
-  <link rel="stylesheet" href="stylesheets/foundation.css">
-  -->
   
   <!-- Included CSS Files (Compressed) -->
   <link rel="stylesheet" href="stylesheets/foundation.min.css">
   <link rel="stylesheet" href="stylesheets/app.css">
-
   <script src="javascripts/modernizr.foundation.js"></script>
 </head>
 <body>
   
   <!-- Header and Nav -->
-  
   <div class="row">
     <div class="three columns">
       <h1><img src="http://placehold.it/400x100&text=Logo" /></h1>
@@ -41,17 +33,14 @@
       </ul>
     </div>
   </div>
-  
   <!-- End Header and Nav -->
   
   
   <div class="row">    
-    
     <!-- Main Content Section -->
     <!-- This has been source ordered to come first in the markup (and on small devices) but to be to the right of the nav on larger screens -->
     <div class="nine columns push-three">
-      
-      <h3>Page Title <small>Page subtitle</small></h3>
+      <h3>Page Title</h3>
       
       <p>Bacon ipsum dolor sit amet salami ham hock biltong ball tip drumstick sirloin pancetta meatball short loin. Venison tail chuck pork chop, andouille ball tip beef ribs flank boudin bacon. Salami andouille pork belly short ribs flank cow. Salami sirloin turkey kielbasa. Sausage venison pork loin leberkas chuck short loin, cow ham prosciutto pastrami jowl. Ham hock jerky tri-tip, fatback hamburger shoulder swine pancetta ground round. Tri-tip prosciutto meatball turkey, brisket spare ribs shankle chuck cow chicken ham hock boudin meatloaf jowl.</p>
 
@@ -109,41 +98,23 @@
   <!--
   
   <script src="javascripts/jquery.js"></script>
-  
   <script src="javascripts/jquery.foundation.mediaQueryToggle.js"></script>
-  
   <script src="javascripts/jquery.foundation.forms.js"></script>
-  
   <script src="javascripts/jquery.event.move.js"></script>
-  
   <script src="javascripts/jquery.event.swipe.js"></script>
-  
   <script src="javascripts/jquery.foundation.reveal.js"></script>
-  
   <script src="javascripts/jquery.foundation.orbit.js"></script>
-  
   <script src="javascripts/jquery.foundation.navigation.js"></script>
-  
   <script src="javascripts/jquery.foundation.buttons.js"></script>
-  
   <script src="javascripts/jquery.foundation.tabs.js"></script>
-  
   <script src="javascripts/jquery.foundation.tooltips.js"></script>
-  
   <script src="javascripts/jquery.foundation.accordion.js"></script>
-  
   <script src="javascripts/jquery.placeholder.js"></script>
-  
   <script src="javascripts/jquery.foundation.alerts.js"></script>
-  
   <script src="javascripts/jquery.foundation.topbar.js"></script>
-  
   <script src="javascripts/jquery.foundation.joyride.js"></script>
-  
   <script src="javascripts/jquery.foundation.clearing.js"></script>
-  
   <script src="javascripts/jquery.foundation.magellan.js"></script>
-  
   -->
   
   <!-- Included JS Files (Compressed) -->
