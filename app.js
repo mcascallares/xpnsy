@@ -1,9 +1,6 @@
-
-/**
- * Module dependencies.
- */
-
 var express = require('express')
+  , config = require('./config')
+  , mongoose = require('mongoose')
 	, passport = require('passport')
 	, ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn
 	, FacebookStrategy = require('passport-facebook').Strategy
@@ -13,17 +10,17 @@ var express = require('express')
   , http = require('http')
   , path = require('path');
 
-var app = express();
 
-// all environments
-app.set('port', process.env.PORT || 3000);
+// express setup
+var app = express();
+app.set('port', config.port);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'hjs');
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
-app.use(express.cookieParser('your secret here'));
+app.use(express.cookieParser(config.cookieSecret));
 app.use(express.session());
 app.use(passport.initialize());
 app.use(passport.session());
@@ -31,19 +28,20 @@ app.use(app.router);
 app.use(require('less-middleware')({ src: __dirname + '/public' }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// development only
-if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
-}
+// error handler for development only
+if ('development' == app.get('env')) { app.use(express.errorHandler()); }
+
+// database
+mongoose.connect(config.mongo.uri);
 
 // authentication
 passport.serializeUser(function(userSessionInfo, done) { done(null, userSessionInfo); });
 passport.deserializeUser(function(userSessionInfo, done) { done(null, userSessionInfo); });
 
 passport.use(new FacebookStrategy({
-    clientID: 493919190675289,
-    clientSecret: 'a3db1fbac3d4907b207ba3dd980e74e1',
-    callbackURL: "http://tutemac.local:3000/auth/facebook/callback"
+    clientID: config.facebook.clientID,
+    clientSecret: config.facebook.clientSecret,
+    callbackURL: config.facebook.callbackURL
   },
   function(accessToken, refreshToken, profile, done) {
     user.UserModel.findOrCreate({provider: profile.provider, providerId: profile.id}, 
