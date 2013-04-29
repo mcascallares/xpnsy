@@ -6,7 +6,7 @@ var express = require('express')
 	, FacebookStrategy = require('passport-facebook').Strategy
   , UserModel = require('./models/user').UserModel
   , routes = require('./routes')
-  , auth = require('./routes/auth')
+  , dashboard = require('./routes/dashboard')
   , http = require('http')
   , path = require('path');
 
@@ -70,11 +70,10 @@ passport.use(new FacebookStrategy({
 
 // route mapping
 app.get('/', routes.index);
-app.get('/login', auth.login);
 app.get('/auth/facebook', passport.authenticate('facebook'));
-app.get('/auth/facebook/callback', passport.authenticate('facebook',
-	{ successRedirect: '/', failureRedirect: '/login' }));
-app.get('/account', ensureLoggedIn('/login'), auth.account);
+app.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { successRedirect: '/dashboard', failureRedirect: '/' }));
+app.get('/dashboard', ensureLoggedIn('/'), dashboard.show);
 
 
 http.createServer(app).listen(app.get('port'), function(){
