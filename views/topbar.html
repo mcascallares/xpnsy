@@ -1,7 +1,6 @@
 <div class="fixed">
   <nav class="top-bar">
     <ul class="title-area">
-      <!-- Title Area -->
       <li class="name"><h1><a href="#">xpnsy</a></h1></li>
       <li class="toggle-topbar menu-icon"><a href="#"></a></li>
     </ul>
@@ -10,6 +9,7 @@
         <li class="divider"></li>
         {{#loggedInUser}}
           <li class="active"><a href="/dashboard">My dashboard</a></li>
+          <li class="active"><a href="logout">Logout</a></li>
         {{/loggedInUser}}
         {{^loggedInUser}}
           <li class="active"><a href="/auth/facebook">Login</a></li>

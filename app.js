@@ -86,8 +86,9 @@ passport.use(new FacebookStrategy({
 // route mapping
 app.get('/', ensureLoggedOut('/dashboard'), routes.index);
 app.get('/auth/facebook', passport.authenticate('facebook'));
-app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { successRedirect: '/dashboard', failureRedirect: '/' }));
+app.get('/auth/facebook/callback', passport.authenticate('facebook',
+  { successRedirect: '/dashboard', failureRedirect: '/' }));
+app.get('/logout', routes.logout);
 app.get('/dashboard', ensureLoggedIn('/'), dashboard.show);
 
 // finally start your engines!
