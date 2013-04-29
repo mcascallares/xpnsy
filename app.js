@@ -13,12 +13,12 @@ var express = require('express')
 
 // express setup
 var app = express();
-app.engine('html', require('hogan-express'));
 app.set('port', config.port);
+app.engine('html', require('hogan-express'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'html');
 app.set('layout', 'layout'); // rendering by default as layout for all views
-//app.set('partials', head: "head"); // partails using by default on all pages
+app.set('partials', {topbar: 'topbar', footer: 'footer'}); // partails using by default on all pages
 app.disable('view cache');
 app.use(express.favicon());
 app.use(express.logger('dev'));
