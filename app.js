@@ -4,7 +4,7 @@ var express = require('express')
 	, passport = require('passport')
 	, ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn
 	, FacebookStrategy = require('passport-facebook').Strategy
-  , user = require('./models/user')
+  , UserModel = require('./models/user').UserModel
   , routes = require('./routes')
   , auth = require('./routes/auth')
   , http = require('http')
@@ -13,9 +13,13 @@ var express = require('express')
 
 // express setup
 var app = express();
+app.engine('html', require('hogan-express'));
 app.set('port', config.port);
 app.set('views', __dirname + '/views');
-app.set('view engine', 'hjs');
+app.set('view engine', 'html');
+app.set('layout', 'layout'); // rendering by default as layout for all views
+//app.set('partials', head: "head"); // partails using by default on all pages
+app.disable('view cache');
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
@@ -44,12 +48,12 @@ passport.use(new FacebookStrategy({
     callbackURL: config.facebook.callbackURL
   },
   function(accessToken, refreshToken, profile, done) {
-    user.UserModel.findOrCreate({provider: profile.provider, providerId: profile.id}, 
+    UserModel.findOrCreate({provider: profile.provider, providerId: profile.id},
       function(err, user, created) {
         if (err) { return done(err); }
         // build the user session to avoid sync info between social provider and our db
-        done(null, { 
-          id:user.id, 
+        done(null, {
+          id:user.id,
           info: {
             provider: profile.provider,
             providerId: profile.id,
@@ -60,7 +64,7 @@ passport.use(new FacebookStrategy({
             gender: profile.gender
           }
         });
-    });  
+    });
 }));
 
 
@@ -68,7 +72,7 @@ passport.use(new FacebookStrategy({
 app.get('/', routes.index);
 app.get('/login', auth.login);
 app.get('/auth/facebook', passport.authenticate('facebook'));
-app.get('/auth/facebook/callback', passport.authenticate('facebook', 
+app.get('/auth/facebook/callback', passport.authenticate('facebook',
 	{ successRedirect: '/', failureRedirect: '/login' }));
 app.get('/account', ensureLoggedIn('/login'), auth.account);
 
