@@ -28,6 +28,10 @@ app.use(express.cookieParser(config.cookieSecret));
 app.use(express.session());
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(function(req, res, next) {
+  res.locals.loggedInUser = req.user;
+  next();
+});
 app.use(app.router);
 app.use(require('less-middleware')({ src: __dirname + '/public' }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -75,7 +79,7 @@ app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { successRedirect: '/dashboard', failureRedirect: '/' }));
 app.get('/dashboard', ensureLoggedIn('/'), dashboard.show);
 
-
+// finally start your engines!
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
