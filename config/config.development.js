@@ -2,7 +2,7 @@
 var config = module.exports = {};
 
 config.env = 'development';
-config.host = 'tutemac.local';
+config.host = 'localhost';
 config.port = 3000;
 config.cookieSecret = 'lsdkdslkjdsklsjfoee239-092fewjwefkmf'
 
