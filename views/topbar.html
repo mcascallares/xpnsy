@@ -8,7 +8,12 @@
     <section class="top-bar-section">
       <ul class="right">
         <li class="divider"></li>
-        <li class="active"><a href="/auth/facebook">Login</a></li>
+        {{#loggedInUser}}
+          <li class="active"><a href="/dashboard">My dashboard</a></li>
+        {{/loggedInUser}}
+        {{^loggedInUser}}
+          <li class="active"><a href="/auth/facebook">Login</a></li>
+        {{/loggedInUser}}
         <li class="active"><a href="/about">About</a></li>
       </ul>
     </section>
