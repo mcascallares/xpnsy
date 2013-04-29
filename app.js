@@ -4,6 +4,7 @@ var express = require('express')
 	, passport = require('passport')
   , MongoStore = require('connect-mongo')(express)
 	, ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn
+  , ensureLoggedOut = require('connect-ensure-login').ensureLoggedOut
 	, FacebookStrategy = require('passport-facebook').Strategy
   , UserModel = require('./models/user').UserModel
   , routes = require('./routes')
@@ -83,7 +84,7 @@ passport.use(new FacebookStrategy({
 
 
 // route mapping
-app.get('/', routes.index);
+app.get('/', ensureLoggedOut('/dashboard'), routes.index);
 app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { successRedirect: '/dashboard', failureRedirect: '/' }));
