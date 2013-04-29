@@ -9,5 +9,4 @@ var UserSchema = new mongoose.Schema({
 UserSchema.plugin(findOrCreate);
 
 
-exports.UserModel = mongoose.model('UserModel', UserSchema, 'user');
-
+exports.UserModel = mongoose.model('UserModel', UserSchema, 'users');

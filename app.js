@@ -2,6 +2,7 @@ var express = require('express')
   , config = require('./config')
   , mongoose = require('mongoose')
 	, passport = require('passport')
+  , MongoStore = require('connect-mongo')(express)
 	, ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn
 	, FacebookStrategy = require('passport-facebook').Strategy
   , UserModel = require('./models/user').UserModel
@@ -10,6 +11,9 @@ var express = require('express')
   , http = require('http')
   , path = require('path');
 
+
+// db connection initialization
+mongoose.connect(config.mongo.uri);
 
 // express setup
 var app = express();
@@ -25,13 +29,21 @@ app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(express.cookieParser(config.cookieSecret));
-app.use(express.session());
+app.use(express.session({
+    secret: config.cookieSecret,
+    maxAge: new Date(Date.now() + 3600000),
+    store: new MongoStore({
+      mongoose_connection : mongoose.connections[0]
+    })
+}));
 app.use(passport.initialize());
 app.use(passport.session());
+// middleware to make loggedInUser available in templates
 app.use(function(req, res, next) {
   res.locals.loggedInUser = req.user;
   next();
 });
+
 app.use(app.router);
 app.use(require('less-middleware')({ src: __dirname + '/public' }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -39,8 +51,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 // error handler for development only
 if ('development' == app.get('env')) { app.use(express.errorHandler()); }
 
-// database
-mongoose.connect(config.mongo.uri);
 
 // authentication
 passport.serializeUser(function(userSessionInfo, done) { done(null, userSessionInfo); });
