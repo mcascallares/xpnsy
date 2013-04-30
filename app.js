@@ -1,19 +1,17 @@
 var express = require('express')
-  , config = require('./config')
-  , mongoose = require('mongoose')
-	, passport = require('passport')
-  , MongoStore = require('connect-mongo')(express)
-	, ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn
-  , ensureLoggedOut = require('connect-ensure-login').ensureLoggedOut
-	, FacebookStrategy = require('passport-facebook').Strategy
-  , UserModel = require('./models/user').UserModel
-  , sitemap = require('./sitemap')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , mongoose = require('mongoose')
+  , MongoStore = require('connect-mongo')(express)
+	, passport = require('passport')
+  , auth = require('./auth')(passport)
+  , sitemap = require('./sitemap')
+  , config = require('./config');
 
 
 // db connection initialization
 mongoose.connect(config.mongo.uri);
+
 
 // express setup
 var app = express();
@@ -43,50 +41,20 @@ app.use(function(req, res, next) {
   res.locals.loggedInUser = req.user;
   next();
 });
-
 app.use(app.router);
 app.use(require('less-middleware')({ src: __dirname + '/public' }));
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 // error handler for development only
 if ('development' == app.get('env')) { app.use(express.errorHandler()); }
 
 
-// authentication
-passport.serializeUser(function(userSessionInfo, done) { done(null, userSessionInfo); });
-passport.deserializeUser(function(userSessionInfo, done) { done(null, userSessionInfo); });
-
-passport.use(new FacebookStrategy({
-    clientID: config.facebook.clientID,
-    clientSecret: config.facebook.clientSecret,
-    callbackURL: config.facebook.callbackURL
-  },
-  function(accessToken, refreshToken, profile, done) {
-    UserModel.findOrCreate({provider: profile.provider, providerId: profile.id},
-      function(err, user, created) {
-        if (err) { return done(err); }
-        // build the user session to avoid sync info between social provider and our db
-        done(null, {
-          id:user.id,
-          info: {
-            provider: profile.provider,
-            providerId: profile.id,
-            username: profile.username,
-            displayName: profile.displayName,
-            name: profile.name,
-            link: profile.link,
-            gender: profile.gender
-          }
-        });
-    });
-}));
-
-
-// build the sitemap using routing
+// sitemap configuration
 sitemap.addRoutes(app, passport);
 
 
-// finally start your engines!
+// start the server
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
