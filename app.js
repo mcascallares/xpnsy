@@ -30,13 +30,10 @@ app.use(express.cookieParser(config.cookieSecret));
 app.use(express.session({
     secret: config.cookieSecret,
     maxAge: new Date(Date.now() + 3600000),
-    store: new MongoStore({
-      mongoose_connection : mongoose.connections[0]
-    })
+    store: new MongoStore({ mongoose_connection : mongoose.connections[0] })
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-// middleware to make loggedInUser available in templates
 app.use(function(req, res, next) {
   res.locals.loggedInUser = req.user;
   next();

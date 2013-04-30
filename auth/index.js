@@ -17,7 +17,6 @@ module.exports = function(passport){
 	    UserModel.findOrCreate({provider: profile.provider, providerId: profile.id},
 	      function(err, user, created) {
 	        if (err) { return done(err); }
-	        // build the user session to avoid sync info between social provider and our db
 	        done(null, {
 	          id:user.id,
 	          info: {
