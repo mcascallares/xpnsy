@@ -1,3 +1,3 @@
 exports.show = function(req, res) {
-	res.render('dashboard');
+	res.render('dashboard/content');
 };
