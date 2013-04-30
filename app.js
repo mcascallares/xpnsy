@@ -7,8 +7,7 @@ var express = require('express')
   , ensureLoggedOut = require('connect-ensure-login').ensureLoggedOut
 	, FacebookStrategy = require('passport-facebook').Strategy
   , UserModel = require('./models/user').UserModel
-  , routes = require('./routes')
-  , dashboard = require('./routes/dashboard')
+  , sitemap = require('./sitemap')
   , http = require('http')
   , path = require('path');
 
@@ -83,13 +82,9 @@ passport.use(new FacebookStrategy({
 }));
 
 
-// route mapping
-app.get('/', ensureLoggedOut('/dashboard'), routes.index);
-app.get('/auth/facebook', passport.authenticate('facebook'));
-app.get('/auth/facebook/callback', passport.authenticate('facebook',
-  { successRedirect: '/dashboard', failureRedirect: '/' }));
-app.get('/logout', routes.logout);
-app.get('/dashboard', ensureLoggedIn('/'), dashboard.show);
+// build the sitemap using routing
+sitemap.addRoutes(app, passport);
+
 
 // finally start your engines!
 http.createServer(app).listen(app.get('port'), function(){
