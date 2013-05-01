@@ -8,13 +8,16 @@
       <ul class="right">
         <li class="divider"></li>
         {{#loggedInUser}}
-          <li class="active"><a href="/dashboard">My dashboard</a></li>
-          <li class="active"><a href="logout">Logout</a></li>
+          <li><a href="/dashboard">My dashboard</a></li>
+          <li><a href="logout">Logout</a></li>
         {{/loggedInUser}}
         {{^loggedInUser}}
-          <li class="active"><a href="/auth/facebook">Login</a></li>
+          <li><a href="/auth/facebook">Login</a></li>
         {{/loggedInUser}}
-        <li class="active"><a href="/about">About</a></li>
+        <li><a href="/about">About</a></li>
+        {{#loggedInUser}}
+        <li><a href="/dashboard"><img src="{{info.picture}}"/></a></li>
+        {{/loggedInUser}}
       </ul>
     </section>
   </nav>
