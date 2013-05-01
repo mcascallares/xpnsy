@@ -5,8 +5,10 @@ exports.create = function(req, res) {
 		name: "this is the name",
 		user: req.user.id
 	});
-	label.save(function(err, label) {
-    if (err) throw err;
-    res.json({ success: true , data: label });
-  });
+
+	Label.findOrCreate({ name: label.name, user: label.user },
+		function(err, label, created) {
+			if (err) throw err;
+			res.json({ success: true , data: label });
+	});
 };
