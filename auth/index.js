@@ -1,6 +1,6 @@
 var config = require('../config')
 	, FacebookStrategy = require('passport-facebook').Strategy
-	, UserModel = require('../models/user').UserModel;
+	, User = require('../models/user').User;
 
 
 module.exports = function(passport){
@@ -14,7 +14,7 @@ module.exports = function(passport){
 	    callbackURL: config.facebook.callbackURL
 	  },
 	  function(accessToken, refreshToken, profile, done) {
-	    UserModel.findOrCreate({provider: profile.provider, providerId: profile.id},
+	    User.findOrCreate({provider: profile.provider, providerId: profile.id},
 	      function(err, user, created) {
 	        if (err) { return done(err); }
 	        done(null, {

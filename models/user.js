@@ -1,12 +1,13 @@
 var mongoose = require('mongoose')
+	, Schema = mongoose.Schema
 	, findOrCreate = require('mongoose-findorcreate');
 
 
-var UserSchema = new mongoose.Schema({
+var userSchema = new Schema({
 	provider: { type: String, required: true },
 	providerId: { type: String, required: true }
 });
-UserSchema.plugin(findOrCreate);
+userSchema.plugin(findOrCreate);
 
 
-exports.UserModel = mongoose.model('UserModel', UserSchema, 'users');
+exports.User = mongoose.model('User', userSchema, 'users');

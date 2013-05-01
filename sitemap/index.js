@@ -3,7 +3,8 @@ var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn
 	, home = require('../routes/home')
 	, about = require('../routes/about')
 	, auth = require('../routes/auth')
-  , dashboard = require('../routes/dashboard');
+  , dashboard = require('../routes/dashboard')
+  , expense = require('../routes/expense');
 
 
 exports.addRoutes = function(app, passport) {
@@ -13,4 +14,5 @@ exports.addRoutes = function(app, passport) {
 	app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/dashboard', failureRedirect: '/' }));
 	app.get('/logout', auth.logout);
 	app.get('/dashboard', ensureLoggedIn('/'), dashboard.show);
+	app.post('/expenses', ensureLoggedIn('/'), expense.create);
 };
