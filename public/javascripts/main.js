@@ -20,7 +20,7 @@ requirejs.config({
   },
 
   paths: {
-    jquery: "jquery"
+    jquery: "foundation/jquery"
   },
 
   name: "main",
