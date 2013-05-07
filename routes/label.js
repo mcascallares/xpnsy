@@ -13,6 +13,7 @@ exports.create = function(req, res) {
 		});
 };
 
+
 exports.list = function(req, res) {
 	Label.findByUser(req.user.id,
 		function(err, labels) {
