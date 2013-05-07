@@ -9,4 +9,9 @@ var labelSchema = new Schema({
 });
 labelSchema.plugin(findOrCreate);
 
+labelSchema.statics.findByUser = function (user, callback) {
+	this.find({ user: user}, callback);
+}
+
+
 exports.Label = mongoose.model('Label', labelSchema, 'labels');

@@ -10,5 +10,13 @@ exports.create = function(req, res) {
 		function(err, label, created) {
 			if (err) throw err;
 			res.json({ success: true , data: label });
-	});
+		});
+};
+
+exports.list = function(req, res) {
+	Label.findByUser(req.user.id,
+		function(err, labels) {
+			if (err) throw err;
+			res.json({ success: true , data: labels });
+		});
 };
