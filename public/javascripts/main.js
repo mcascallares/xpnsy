@@ -28,7 +28,6 @@ requirejs.config({
 });
 
 requirejs(["jquery",
-         //"foundation/jquery.cookie",
          "foundation/jquery.event.move",
          "foundation/jquery.event.swipe",
          "foundation/jquery.foundation.accordion",
