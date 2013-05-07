@@ -1,6 +1,5 @@
 requirejs.config({
   shim: {
-    //"foundation/jquery.cookie": { deps: ["jquery"] },
     "foundation/jquery.event.move": { deps: ["jquery"] },
     "foundation/jquery.event.swipe": { deps: ["jquery"] },
     "foundation/jquery.foundation.accordion": { deps: ["jquery"] },
@@ -17,8 +16,6 @@ requirejs.config({
     "foundation/jquery.foundation.tabs": { deps: ["jquery"] },
     "foundation/jquery.foundation.tooltips": { deps: ["jquery"] },
     "foundation/jquery.foundation.topbar": { deps: ["jquery"] },
-    //"foundation/jquery.foundation.utils": { deps: ["jquery"] },
-    //"foundation/jquery.offcanvas": { deps: ["jquery"] },
     "foundation/jquery.placeholder": { deps: ["jquery"] }
   },
 
@@ -48,8 +45,6 @@ requirejs(["jquery",
          "foundation/jquery.foundation.tabs",
          "foundation/jquery.foundation.tooltips",
          "foundation/jquery.foundation.topbar",
-         //"foundation/jquery.foundation.utils",
-         //"foundation/jquery.offcanvas",
          "foundation/jquery.placeholder"], function ($) {
 
   /**
@@ -94,5 +89,4 @@ requirejs(["jquery",
     }
 
   })($, window);
-
 });
