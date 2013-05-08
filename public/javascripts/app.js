@@ -28,28 +28,28 @@ requirejs.config({
 });
 
 requirejs(["jquery",
-         "foundation/jquery.event.move",
-         "foundation/jquery.event.swipe",
-         "foundation/jquery.foundation.accordion",
-         "foundation/jquery.foundation.alerts",
-         "foundation/jquery.foundation.buttons",
-         "foundation/jquery.foundation.clearing",
-         "foundation/jquery.foundation.forms",
-         "foundation/jquery.foundation.joyride",
-         "foundation/jquery.foundation.magellan",
-         "foundation/jquery.foundation.mediaQueryToggle",
-         "foundation/jquery.foundation.navigation",
-         "foundation/jquery.foundation.orbit",
-         "foundation/jquery.foundation.reveal",
-         "foundation/jquery.foundation.tabs",
-         "foundation/jquery.foundation.tooltips",
-         "foundation/jquery.foundation.topbar",
-         "foundation/jquery.placeholder"], function ($) {
+  "xpnsy/dashboard/main",
+  "foundation/jquery.event.move",
+  "foundation/jquery.event.swipe",
+  "foundation/jquery.foundation.accordion",
+  "foundation/jquery.foundation.alerts",
+  "foundation/jquery.foundation.buttons",
+  "foundation/jquery.foundation.clearing",
+  "foundation/jquery.foundation.forms",
+  "foundation/jquery.foundation.joyride",
+  "foundation/jquery.foundation.magellan",
+  "foundation/jquery.foundation.mediaQueryToggle",
+  "foundation/jquery.foundation.navigation",
+  "foundation/jquery.foundation.orbit",
+  "foundation/jquery.foundation.reveal",
+  "foundation/jquery.foundation.tabs",
+  "foundation/jquery.foundation.tooltips",
+  "foundation/jquery.foundation.topbar",
+  "foundation/jquery.placeholder"], function ($, dashboard) {
 
   /**
    * Foundation - app.js:
    */
-
   (function ($, window, undefined) {
     var $doc = $(document),
         Modernizr = window.Modernizr;
@@ -88,4 +88,11 @@ requirejs(["jquery",
     }
 
   })($, window);
+
+  /**
+   * End Foundation - app.js:
+   */
+
+   console.log("Hi!");
+   console.log(dashboard.showLabels());
 });
