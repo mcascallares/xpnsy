@@ -23,8 +23,13 @@ requirejs.config({
     jquery: "jquery/jquery"
   },
 
+  hgn: {
+    templateExtension: ".html"
+  },
+
   name: "app",
   out: "app.min.js"
+
 });
 
 requirejs(["jquery",
@@ -98,5 +103,4 @@ requirejs(["jquery",
   if (window.location.pathname == '/dashboard') {
     dashboard.init();
   }
-
 });

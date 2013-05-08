@@ -1,0 +1,23 @@
+<form class="custom">
+	<div class="row">
+		<div class="small-12 columns">
+			<label>Type</label>
+	    <select class="medium">
+				{{#options}}
+				<option value="{{ value }}">{{ label }}</option>
+				{{/options}}
+			</select>
+		</div>
+  </div>
+  <div class="row">
+  	<div class="small-12 columns">
+			<label>Amount</label>
+			<input type="text" placeholder="">
+  	</div>
+  </div>
+  <div class="row">
+  	<div class="small-12 columns">
+			<a href="#" class="medium button">Save</a>
+  	</div>
+  </div>
+</form>
