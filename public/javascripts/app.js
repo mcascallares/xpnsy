@@ -28,7 +28,7 @@ requirejs.config({
 });
 
 requirejs(["jquery",
-  "xpnsy/dashboard/main",
+  "xpnsy/dashboard",
   "foundation/jquery.event.move",
   "foundation/jquery.event.swipe",
   "foundation/jquery.foundation.accordion",
@@ -93,6 +93,10 @@ requirejs(["jquery",
    * End Foundation - app.js:
    */
 
-   console.log("Hi!");
-   console.log(dashboard.showLabels());
+
+   // TODO logic handler to select/include the module to use
+  if (window.location.pathname == '/dashboard') {
+    dashboard.init();
+  }
+
 });

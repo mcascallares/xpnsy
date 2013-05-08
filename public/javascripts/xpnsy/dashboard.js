@@ -1,7 +1,9 @@
-define(['jquery', 'underscore', 'xpnsy/api/label'], function($, _, label) {
+define(['jquery',
+  'underscore',
+  'xpnsy/api'], function($, _, api) {
 
   var showLabels = function() {
-    label.retrieveLabels().done(function(response) {
+    api.retrieveLabels().done(function(response) {
       if (response.success) {
         _.each(response.data, function(label){
           console.log(label.name);
@@ -10,9 +12,13 @@ define(['jquery', 'underscore', 'xpnsy/api/label'], function($, _, label) {
     });
   };
 
+
+  var init = function() {
+    showLabels();
+  };
+
   return {
-    color: "blue",
-    showLabels: showLabels
+    init: init
   };
 
 });
