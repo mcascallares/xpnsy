@@ -11,8 +11,11 @@ var expenseSchema = new Schema({
 });
 expenseSchema.plugin(timestamps); // adds createdAt and updatedAt fields
 
+
 expenseSchema.pre('save', function(next) {
 	var expense = this;
+
+	// validates that expense label belongs to the expense user
 	Label.findById(expense.label, function(err, label) {
 		if (err) return next(err);
 		if (label.user.equals(expense.user)) {
