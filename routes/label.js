@@ -19,5 +19,6 @@ exports.list = function(req, res) {
 		function(err, labels) {
 			if (err) throw err;
 			res.json({ success: true , data: labels });
-		});
+		}
+	);
 };
