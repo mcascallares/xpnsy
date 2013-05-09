@@ -15,8 +15,6 @@ expenseSchema.pre('save', function(next) {
 	var expense = this;
 	Label.findById(expense.label, function(err, label) {
 		if (err) return next(err);
-		//console.log(label.user);
-		//console.log(expense.user);
 		if (label.user.equals(expense.user)) {
 			next();
 		} else {
