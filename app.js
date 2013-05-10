@@ -8,10 +8,8 @@ var express = require('express')
   , sitemap = require('./sitemap')
   , config = require('./config');
 
-
 // db connection initialization
 mongoose.connect(config.mongo.uri);
-
 
 // express setup
 var app = express();
