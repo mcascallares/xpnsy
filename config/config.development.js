@@ -1,4 +1,3 @@
-// default configuration file (development is default)
 var config = module.exports = {};
 
 config.env = 'development';
