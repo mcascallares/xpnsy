@@ -1,4 +1,4 @@
-// configuration sample, replace 'sample' per environment
+// configuration sample file, replace 'sample' per environment
 var config = module.exports = {};
 
 config.env = 'development';
