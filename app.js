@@ -14,7 +14,6 @@ mongoose.connect(config.mongo.uri);
 
 
 
-
 // express setup
 var app = express();
 app.set('port', config.port);
