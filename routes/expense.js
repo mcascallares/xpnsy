@@ -11,3 +11,9 @@ exports.create = function(req, res) {
     res.json({ success: true , data: expense });
   });
 };
+
+exports.totalsByMonth = function(req, res) {
+	Expense.totalsByMonth(req.user.id, 5, function(err, response) {
+		res.json(response);
+	});
+};

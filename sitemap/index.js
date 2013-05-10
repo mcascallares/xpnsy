@@ -22,4 +22,5 @@ exports.addRoutes = function(app, passport) {
 	app.get('/labels', ensureLoggedIn('/'), label.list);
 
 	app.post('/expenses', ensureLoggedIn('/'), expense.create);
+	app.get('/expenses/totals', ensureLoggedIn('/'), expense.totalsByMonth);
 };

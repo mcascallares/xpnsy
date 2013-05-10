@@ -13,6 +13,8 @@ var express = require('express')
 mongoose.connect(config.mongo.uri);
 
 
+
+
 // express setup
 var app = express();
 app.set('port', config.port);
@@ -43,8 +45,11 @@ app.use(require('less-middleware')({ src: __dirname + '/public' }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-// error handler for development only
-if ('development' == app.get('env')) { app.use(express.errorHandler()); }
+// error handler and db debug for development only
+if ('development' == app.get('env')) {
+  mongoose.set('debug', true)
+  app.use(express.errorHandler())
+}
 
 
 // sitemap configuration
