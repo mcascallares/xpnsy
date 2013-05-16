@@ -26,14 +26,13 @@ expenseSchema.pre('save', function(next) {
 	});
 });
 
-
-expenseSchema.statics.totalsByMonth = function(user, month, callback) {
-	this.aggregate([
-		{ $match: { user: mongoose.Types.ObjectId(user) }},
-		{ $group: { _id: null, total: { $sum: "$amount" }}}],
-		{},
-		callback
-	);
+expenseSchema.statics.latestsByUser = function(user, limit, offset, callback) {
+	this.find({ user: user }).populate('label')
+		.sort('updatedAt')
+		.limit(limit)
+		.skip(offset)
+		.exec(callback);
 }
+
 
 exports.Expense = mongoose.model('Expense', expenseSchema, 'expenses');

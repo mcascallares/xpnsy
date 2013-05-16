@@ -12,8 +12,12 @@ exports.create = function(req, res) {
   });
 };
 
-exports.totalsByMonth = function(req, res) {
-	Expense.totalsByMonth(req.user.id, 5, function(err, response) {
-		res.json(response);
+
+exports.list = function(req, res) {
+	var limit = req.params.limit  || 10;
+	var offset = req.params.offset  || 0;
+	Expense.latestsByUser(req.user.id, limit, offset, function(err, expenses) {
+		if (err) throw err;
+		res.json({ success: true , data: expenses });
 	});
 };

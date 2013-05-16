@@ -27,6 +27,7 @@ define(['jquery',
         });
         container.html(expenseWidget({ options: options }));
         attachListeners(container);
+        $.fn.foundationAlerts;
       }
     });
   };
