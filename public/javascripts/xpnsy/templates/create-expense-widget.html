@@ -5,9 +5,10 @@
 		<div class="small-12 columns">
 			<label>Type</label>
 	    <select name="label">
-				{{#options}}
-				<option value="{{ value }}">{{ label }}</option>
-				{{/options}}
+	    	<option value="0">Select label...</option>
+				{{#labels}}
+				<option value="{{ _id }}">{{ name }}</option>
+				{{/labels}}
 			</select>
 		</div>
   </div>

@@ -11,7 +11,9 @@ labelSchema.plugin(findOrCreate);
 
 
 labelSchema.statics.findByUser = function (user, callback) {
-	this.find({ user: user}, callback);
+	this.find({ user: user })
+	.sort('name')
+	.exec(callback);
 }
 
 

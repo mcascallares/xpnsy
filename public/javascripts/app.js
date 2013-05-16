@@ -1,5 +1,14 @@
 requirejs.config({
   shim: {
+    "underscore": { exports: "_" },
+    "backbone": {
+      deps: ["underscore", "jquery"],
+      exports: 'Backbone'
+    },
+    "backbone.validation": {
+      deps: ["backbone"],
+      exports: 'Backbone.Validation'
+    },
     "foundation/jquery.event.move": { deps: ["jquery"] },
     "foundation/jquery.event.swipe": { deps: ["jquery"] },
     "foundation/jquery.foundation.accordion": { deps: ["jquery"] },
@@ -20,7 +29,8 @@ requirejs.config({
   },
 
   paths: {
-    jquery: "jquery/jquery"
+    jquery: "jquery",
+    "backbone.validation": "backbone-validation-min"
   },
 
   hgn: {
@@ -33,7 +43,6 @@ requirejs.config({
 });
 
 requirejs(["jquery",
-  "xpnsy/dashboard",
   "foundation/jquery.event.move",
   "foundation/jquery.event.swipe",
   "foundation/jquery.foundation.accordion",
@@ -98,9 +107,4 @@ requirejs(["jquery",
    * End Foundation - app.js:
    */
 
-
-   // TODO logic handler to select/include the module to use
-  if (window.location.pathname == '/dashboard') {
-    dashboard.init();
-  }
 });

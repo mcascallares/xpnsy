@@ -1,4 +1,15 @@
 <div class="row">
-	<div class="small-6 columns" id="expense-widget"></div>
+	<div class="small-6 columns" id="create-expense-widget"></div>
 	<div class="small-6 columns" id="history-widget"></div>
 </div>
+
+
+<script type="text/javascript">
+
+requirejs(['xpnsy/create-expense-widget'],
+	function(widget) {
+		var widget = new widget.CreateExpenseView({
+			el: $("#create-expense-widget")
+		});
+});
+</script>
