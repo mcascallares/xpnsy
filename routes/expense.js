@@ -8,7 +8,9 @@ exports.create = function(req, res) {
 	});
 	expense.save(function(err, expense) {
     if (err) throw err;
-    res.json({ success: true , data: expense });
+    expense.populate('label', function(err, fullExpense) {
+    	res.json(fullExpense);
+    });
   });
 };
 
@@ -16,7 +18,7 @@ exports.create = function(req, res) {
 exports.list = function(req, res) {
 	var limit = req.params.limit  || 10;
 	var offset = req.params.offset  || 0;
-	Expense.latestsByUser(req.user.id, limit, offset, function(err, expenses) {
+	Expense.findByUser(req.user.id, limit, offset, function(err, expenses) {
 		if (err) throw err;
 		res.json({ success: true , data: expenses });
 	});

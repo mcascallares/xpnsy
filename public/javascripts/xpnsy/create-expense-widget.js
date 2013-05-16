@@ -28,8 +28,7 @@ define(['backbone',
         $.get('/labels').done(function(response) {
           if (response.success) {
             var context = {
-              labels: response.data,
-              expense: me.model
+              labels: response.data
             };
             me.$el.html(me.template(context));
           }
@@ -54,7 +53,17 @@ define(['backbone',
       },
 
       submit: function() {
-        this.model.save();
+        var self = this;
+        this.model.save(null, {
+          success: function(expense) {
+            // remove the last and insert in the first position to keep the same page size
+            var last = self.collection.at(self.collection.length - 1);
+            self.collection.remove(last);
+            self.collection.add(expense, {at: 0});
+
+            self.initialize();
+          }
+        });
       }
 
     });

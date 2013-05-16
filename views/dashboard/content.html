@@ -2,6 +2,7 @@
 
 	<div class="small-6 columns">
 		<div id="create-expense-widget"></div>
+		<div id="list-expense-widget"></div>
 	</div>
 
 	<div class="small-6 columns" id="history-widget"></div>
@@ -9,10 +10,31 @@
 
 <script type="text/javascript">
 
-requirejs(['xpnsy/create-expense-widget'],
-	function(widget) {
-		var widget = new widget.CreateExpenseView({
-			el: $("#create-expense-widget")
+requirejs([
+	'xpnsy/create-expense-widget',
+	'xpnsy/list-expense-widget',
+	'xpnsy/models'],
+	function(createWidget, listWidget, models) {
+
+
+
+		// bootstrap data
+		$.get('/expenses').done(function(response) {
+			if (response.success) {
+				var expenses = new models.ExpenseCollection(response.data);
+
+				new createWidget.CreateExpenseView({
+						el: $('#create-expense-widget'),
+						collection: expenses
+				});
+
+				new listWidget.ListExpenseView({
+  				collection: expenses,
+  				el: $('#list-expense-widget')
+				});
+			}
 		});
-});
+	}
+);
+
 </script>

@@ -4,7 +4,7 @@ define(['backbone',
 
     var Expense = Backbone.Model.extend({
 
-        urlRoot : '/expenses',
+        urlRoot: '/expenses',
 
         defaults: {
           label: null,
@@ -21,8 +21,15 @@ define(['backbone',
         }
     });
 
+    var ExpenseCollection = Backbone.Collection.extend({
+      model: Expense,
+      url: '/expenses'
+    });
+
+
     return {
-      Expense: Expense
+      Expense: Expense,
+      ExpenseCollection: ExpenseCollection
     };
 
   }

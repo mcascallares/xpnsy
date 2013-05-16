@@ -9,7 +9,7 @@ exports.create = function(req, res) {
 	Label.findOrCreate({ name: label.name, user: label.user },
 		function(err, label, created) {
 			if (err) throw err;
-			res.json({ success: true , data: label });
+			res.json(label);
 		});
 };
 

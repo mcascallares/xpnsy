@@ -28,7 +28,7 @@ expenseSchema.pre('save', function(next) {
 
 expenseSchema.statics.findByUser = function(user, limit, offset, callback) {
 	this.find({ user: user }).populate('label')
-		.sort('updatedAt')
+		.sort('-updatedAt')
 		.limit(limit)
 		.skip(offset)
 		.exec(callback);
