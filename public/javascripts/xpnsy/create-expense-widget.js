@@ -15,12 +15,10 @@ define(['backbone',
 
         validation: {
           label: {
-            required: true,
-            msg: 'Please enter a valid email'
+            required: true
           },
-          label: {
-            required: true,
-            msg: 'Please enter a valid email'
+          amount: {
+            required: true
           }
         }
     });
@@ -34,13 +32,18 @@ define(['backbone',
       initialize: function() {
         this.model = new Expense();
         this.render();
-        Backbone.Validation.bind(this);
         _.bindAll(this, 'changed');
-        this.model.bind('validated:valid', this.valid);
-        this.model.bind('validated:invalid', this.invalid);
       },
 
       render: function() {
+        Backbone.Validation.bind(this, {
+          valid: function(view, attr) {
+            view.$('.js-cg-' + attr).removeClass('error');
+          },
+          invalid: function(view, attr, error) {
+            view.$('.js-cg-' + attr).addClass('error');
+          }
+        });
         var me = this;
         $.get('/labels').done(function(response) {
           if (response.success) {
@@ -54,11 +57,13 @@ define(['backbone',
         return this;
       },
 
+
       events: {
         'click .js-submit' : 'submit',
         'change input' : 'changed',
         'change select' : 'changed'
       },
+
 
       changed:function(evt) {
         var changed = evt.currentTarget;
@@ -70,14 +75,6 @@ define(['backbone',
 
       submit: function() {
         this.model.save();
-      },
-
-      valid: function() {
-        alert('valid');
-      },
-
-      invalid: function() {
-        alert('invalid');
       }
 
     });
