@@ -23,7 +23,12 @@ define(['backbone',
 
     var ExpenseCollection = Backbone.Collection.extend({
       model: Expense,
-      url: '/expenses'
+
+      url: '/expenses',
+
+      comparator: function(expense) {
+        return -expense.get('updatedAtMs');
+      }
     });
 
 

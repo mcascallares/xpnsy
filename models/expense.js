@@ -5,11 +5,16 @@ var mongoose = require('mongoose')
 
 
 var expenseSchema = new Schema({
-	amount: { type: Number, required: true },
-	label: { type: Schema.Types.ObjectId, ref: 'Label', required: true},
-	user: { type: Schema.Types.ObjectId, ref: 'User', required: true}
+		amount: { type: Number, required: true },
+		label: { type: Schema.Types.ObjectId, ref: 'Label', required: true},
+		user: { type: Schema.Types.ObjectId, ref: 'User', required: true}
 });
-expenseSchema.plugin(timestamps); // adds createdAt and updatedAt fields
+expenseSchema.plugin(timestamps);
+expenseSchema.virtual('updatedAtMs').get(function () {
+    return this.updatedAt.getTime();
+});
+expenseSchema.set('toObject', { getters: true });
+expenseSchema.set('toJSON', { getters: true });
 
 
 expenseSchema.pre('save', function(next) {

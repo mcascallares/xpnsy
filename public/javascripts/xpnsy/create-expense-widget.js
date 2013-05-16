@@ -56,11 +56,13 @@ define(['backbone',
         var self = this;
         this.model.save(null, {
           success: function(expense) {
-            // remove the last and insert in the first position to keep the same page size
+            // insert and remove the last to keep the page with constant size
+            console.log(expense);
+            self.collection.add(expense);
             var last = self.collection.at(self.collection.length - 1);
             self.collection.remove(last);
-            self.collection.add(expense, {at: 0});
 
+            // re-start the model for a new expense
             self.initialize();
           }
         });
