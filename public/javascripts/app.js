@@ -30,7 +30,7 @@ requirejs.config({
 
   paths: {
     jquery: "jquery",
-    "backbone.validation": "backbone-validation-min"
+    "backbone.validation": "backbone-validation"
   },
 
   hgn: {
