@@ -1,28 +1,8 @@
 define(['backbone',
   'backbone.validation',
+  'xpnsy/models',
   'hgn!xpnsy/templates/create-expense-widget'],
-  function(Backbone, validation, createExpenseTemplate) {
-
-    // put models in a separate AMD?
-    var Expense = Backbone.Model.extend({
-
-        urlRoot : '/expenses',
-
-        defaults: {
-          label: null,
-          amount: null
-        },
-
-        validation: {
-          label: {
-            required: true
-          },
-          amount: {
-            required: true
-          }
-        }
-    });
-
+  function(Backbone, validation, models, createExpenseTemplate) {
 
     var CreateExpenseView = Backbone.View.extend({
 
@@ -30,7 +10,7 @@ define(['backbone',
       template: createExpenseTemplate,
 
       initialize: function() {
-        this.model = new Expense();
+        this.model = new models.Expense();
         this.render();
         _.bindAll(this, 'changed');
       },
