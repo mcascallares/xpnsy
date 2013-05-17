@@ -1,7 +1,7 @@
 define(['backbone',
-  'hgn!xpnsy/templates/expense-item',
-  'xpnsy/template.util'],
-  function(Backbone, itemTemplate, templateUtil) {
+  'xpnsy/template.helper',
+  'hgn!xpnsy/templates/expense-item'],
+  function(Backbone, templateHelper, itemTemplate) {
 
     var ExpenseView = Backbone.View.extend({
 
@@ -13,8 +13,7 @@ define(['backbone',
       },
 
       render: function() {
-        var templateData = this.model.attributes;
-        templateData.formatDate = templateUtil.formatDate;
+        var templateData = templateHelper.data(this.model.attributes);
         this.$el.append(this.template(templateData));
         return this;
       }

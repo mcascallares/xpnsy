@@ -1,8 +1,9 @@
 define(['backbone',
   'backbone.validation',
   'xpnsy/models',
+  'xpnsy/template.helper',
   'hgn!xpnsy/templates/create-expense-widget'],
-  function(Backbone, validation, models, createExpenseTemplate) {
+  function(Backbone, validation, models, templateHelper, createExpenseTemplate) {
 
     var CreateExpenseView = Backbone.View.extend({
 
@@ -28,9 +29,9 @@ define(['backbone',
         var self = this;
         $.get('/labels').done(function(response) {
           if (response.success) {
-            var templateData = {
+            var templateData = templateHelper.data({
               labels: response.data
-            };
+            });
             self.$el.html(self.template(templateData));
             $('.js-datepicker').fdatepicker('setValue', new Date());
           }
