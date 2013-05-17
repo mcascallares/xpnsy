@@ -32,7 +32,7 @@ requirejs.config({
   paths: {
     "jquery": "jquery",
     "backbone.validation": "backbone-validation",
-    "foundation.datepicker": "http://foundation-datepicker.peterbeno.com/example/js/foundation-datepicker.js"
+    "moment": "moment.min"
   },
 
   hgn: {
