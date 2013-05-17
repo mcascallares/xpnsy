@@ -8,25 +8,7 @@ requirejs.config({
     "backbone.validation": {
       deps: ["backbone"],
       exports: 'Backbone.Validation'
-    },
-    "foundation/jquery.event.move": { deps: ["jquery"] },
-    "foundation/jquery.event.swipe": { deps: ["jquery"] },
-    "foundation/jquery.foundation.accordion": { deps: ["jquery"] },
-    "foundation/jquery.foundation.alerts": { deps: ["jquery"] },
-    "foundation/jquery.foundation.buttons": { deps: ["jquery"] },
-    "foundation/jquery.foundation.clearing": { deps: ["jquery"] },
-    "foundation/jquery.foundation.forms": { deps: ["jquery"] },
-    "foundation/jquery.foundation.joyride": { deps: ["jquery"] },
-    "foundation/jquery.foundation.magellan": { deps: ["jquery"] },
-    "foundation/jquery.foundation.mediaQueryToggle": { deps: ["jquery"] },
-    "foundation/jquery.foundation.navigation": { deps: ["jquery"] },
-    "foundation/jquery.foundation.orbit": { deps: ["jquery"] },
-    "foundation/jquery.foundation.reveal": { deps: ["jquery"] },
-    "foundation/jquery.foundation.tabs": { deps: ["jquery"] },
-    "foundation/jquery.foundation.tooltips": { deps: ["jquery"] },
-    "foundation/jquery.foundation.topbar": { deps: ["jquery"] },
-    "foundation/jquery.placeholder": { deps: ["jquery"] },
-    "foundation/foundation-datepicker": { deps: ["jquery"] }
+    }
   },
 
   paths: {
@@ -45,8 +27,15 @@ requirejs.config({
 });
 
 requirejs(["jquery",
-  "foundation/foundation.min",
-  "foundation/foundation-datepicker"
-  ], function ($, foundation) {
+  "xpnsy/dashboard",
+  "foundation/foundation.min"
+  ], function ($, dashboard) {
+
     $(document).foundation();
+
+    // TODO add a dispatcher logic here to know which AMD we have to init
+    if (window.location.href.indexOf("/dashboard") !== -1) {
+      //console.log(dashboard);
+      dashboard.init()
+    }
 });

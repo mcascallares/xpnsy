@@ -1,36 +1,7 @@
 <div class="row">
-
 	<div class="small-6 columns">
 		<div id="create-expense-widget"></div>
 		<div id="list-expense-widget"></div>
 	</div>
-
 	<div class="small-6 columns" id="history-widget"></div>
 </div>
-
-<script type="text/javascript">
-
-requirejs([
-	'xpnsy/widgets/create-expense/widget',
-	'xpnsy/widgets/list-expense/widget',
-	'xpnsy/models'],
-	function(createWidget, listWidget, models) {
-
-		// bootstrap data
-		$.get('/expenses').done(function(response) {
-			var expenses = new models.ExpenseCollection(response);
-
-			new createWidget.CreateExpenseView({
-					el: $('#create-expense-widget'),
-					collection: expenses
-			});
-
-			new listWidget.ListExpenseView({
-				collection: expenses,
-				el: $('#list-expense-widget')
-			});
-		});
-	}
-);
-
-</script>

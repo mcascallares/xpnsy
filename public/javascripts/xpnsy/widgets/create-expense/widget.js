@@ -1,9 +1,10 @@
 define(['backbone',
   'backbone.validation',
+  'foundation/foundation-datepicker',
   'xpnsy/models',
   'xpnsy/template.helper',
   'hgn!./templates/create-dialog'],
-  function(Backbone, validation, models, templateHelper, dialogTemplate) {
+  function(Backbone, validation, datepicker, models, templateHelper, dialogTemplate) {
 
     var CreateExpenseView = Backbone.View.extend({
 
