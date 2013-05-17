@@ -2,6 +2,7 @@
   "name": "xpnsy",
   "version": "0.0.1",
   "private": true,
+  "main": "server.js",
   "scripts": {
     "start": "node app.js"
   },
@@ -16,5 +17,9 @@
     "passport-facebook": "~0.1.5",
     "connect-ensure-login": "~0.1.0",
     "connect-mongo": "~0.3.2"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-requirejs": "~0.4.1"
   }
 }
