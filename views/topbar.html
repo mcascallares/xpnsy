@@ -2,7 +2,7 @@
   <nav class="top-bar">
     <ul class="title-area">
       <li class="name"><h1><a href="/">xpnsy</a></h1></li>
-      <li class="toggle-topbar menu-icon"><a href="javascript:void(0);"></a></li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
     </ul>
     <section class="top-bar-section">
       <ul class="right">
@@ -16,7 +16,7 @@
         {{/loggedInUser}}
         <li><a href="/about">About</a></li>
         {{#loggedInUser}}
-        <li><a href="/dashboard"><img src="{{info.picture}}"/></a></li>
+        <li><a href="/dashboard"><img src="{{info.picture}}" width="40px" height="40px" /></a></li>
         {{/loggedInUser}}
       </ul>
     </section>
