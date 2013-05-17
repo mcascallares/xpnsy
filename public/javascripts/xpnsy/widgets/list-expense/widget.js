@@ -1,7 +1,8 @@
 define(['backbone',
   'xpnsy/template.helper',
+  'hgn!./templates/list',
   'hgn!./templates/list-item'],
-  function(Backbone, templateHelper, itemTemplate) {
+  function(Backbone, templateHelper, listTemplate, itemTemplate) {
 
     var ExpenseView = Backbone.View.extend({
 
@@ -21,9 +22,10 @@ define(['backbone',
 
 
     var ListExpenseView = Backbone.View.extend({
-      initialize: function() {
-        console.log('initialize list');
 
+      template: listTemplate,
+
+      initialize: function() {
         // bind the functions 'add' and 'remove' to the view.
         //_(this).bindAll('add', 'remove', 'render');
         _.bindAll(this);
@@ -34,18 +36,13 @@ define(['backbone',
       },
 
       render: function() {
-        console.log('render list');
-        console.log(this);
-        this.$el.empty();
-
-        var table = $('<table></table>');
+        this.$el.html($(this.template()));
         this.collection.each(function(expense) {
           var expenseView = new ExpenseView({
-            el: table,
+            el: $('.js-items', this.$el),
             model: expense
           });
         });
-        this.$el.append(table);
 
         return this;
       },
