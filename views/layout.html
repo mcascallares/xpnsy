@@ -11,13 +11,10 @@
   <meta name="viewport" content="width=device-width" />
   <title>xpnsy | track your expenses</title>
 
-  <!-- Included CSS Files (Compressed) -->
   <link rel="stylesheet" href="stylesheets/normalize.css"/>
   <link rel="stylesheet" href="stylesheets/foundation.min.css"/>
   <link rel="stylesheet" href="stylesheets/app.css"/>
-
-  <!-- datepicker -->
-  <link rel="stylesheet" href="http://foundation-datepicker.peterbeno.com/example/stylesheets/foundation-datepicker.css">
+  <link rel="stylesheet" href="stylesheets/foundation-datepicker.css">
 
   <script src="javascripts/foundation/custom.modernizr.js"></script>
   <script data-main="javascripts/app" src="javascripts/require.js"></script>
@@ -27,7 +24,6 @@
 
   {{> topbar}}
 
-  <!-- Main Content Section, force here the width and layout -->
   <div class="row">
     <div class="twelve columns">
       {{{ yield }}}
@@ -35,5 +31,6 @@
   </div>
 
   {{> footer}}
+
 </body>
 </html>
