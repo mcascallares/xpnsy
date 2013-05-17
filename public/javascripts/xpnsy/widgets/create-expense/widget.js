@@ -28,13 +28,11 @@ define(['backbone',
 
         var self = this;
         $.get('/labels').done(function(response) {
-          if (response.success) {
-            var templateData = templateHelper.data({
-              labels: response.data
-            });
-            self.$el.html(self.template(templateData));
-            $('.js-datepicker').fdatepicker('setValue', new Date());
-          }
+          var templateData = templateHelper.data({
+            labels: response
+          });
+          self.$el.html(self.template(templateData));
+          $('.js-datepicker').fdatepicker('setValue', new Date());
         });
         return this;
       },

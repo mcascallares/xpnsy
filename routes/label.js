@@ -18,7 +18,7 @@ exports.list = function(req, res) {
 	Label.findByUser(req.user.id,
 		function(err, labels) {
 			if (err) throw err;
-			res.json({ success: true , data: labels });
+			res.json(labels);
 		}
 	);
 };

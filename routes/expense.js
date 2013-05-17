@@ -21,6 +21,6 @@ exports.list = function(req, res) {
 	var offset = req.params.offset  || 0;
 	Expense.findByUser(req.user.id, limit, offset, function(err, expenses) {
 		if (err) throw err;
-		res.json({ success: true , data: expenses });
+		res.json(expenses);
 	});
 };

@@ -18,19 +18,17 @@ requirejs([
 
 		// bootstrap data
 		$.get('/expenses').done(function(response) {
-			if (response.success) {
-				var expenses = new models.ExpenseCollection(response.data);
+			var expenses = new models.ExpenseCollection(response);
 
-				new createWidget.CreateExpenseView({
-						el: $('#create-expense-widget'),
-						collection: expenses
-				});
+			new createWidget.CreateExpenseView({
+					el: $('#create-expense-widget'),
+					collection: expenses
+			});
 
-				new listWidget.ListExpenseView({
-  				collection: expenses,
-  				el: $('#list-expense-widget')
-				});
-			}
+			new listWidget.ListExpenseView({
+				collection: expenses,
+				el: $('#list-expense-widget')
+			});
 		});
 	}
 );
