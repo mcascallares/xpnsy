@@ -11,12 +11,10 @@
 <script type="text/javascript">
 
 requirejs([
-	'xpnsy/create-expense-widget',
-	'xpnsy/list-expense-widget',
+	'xpnsy/widgets/create-expense/widget',
+	'xpnsy/widgets/list-expense/widget',
 	'xpnsy/models'],
 	function(createWidget, listWidget, models) {
-
-
 
 		// bootstrap data
 		$.get('/expenses').done(function(response) {

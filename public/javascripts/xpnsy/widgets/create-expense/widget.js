@@ -2,13 +2,13 @@ define(['backbone',
   'backbone.validation',
   'xpnsy/models',
   'xpnsy/template.helper',
-  'hgn!xpnsy/templates/create-expense-widget'],
-  function(Backbone, validation, models, templateHelper, createExpenseTemplate) {
+  'hgn!./templates/create-dialog'],
+  function(Backbone, validation, models, templateHelper, dialogTemplate) {
 
     var CreateExpenseView = Backbone.View.extend({
 
       id: null,
-      template: createExpenseTemplate,
+      template: dialogTemplate,
 
       initialize: function() {
         this.model = new models.Expense();

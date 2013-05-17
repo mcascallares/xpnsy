@@ -1,6 +1,6 @@
 define(['backbone',
   'xpnsy/template.helper',
-  'hgn!xpnsy/templates/expense-item'],
+  'hgn!./templates/list-item'],
   function(Backbone, templateHelper, itemTemplate) {
 
     var ExpenseView = Backbone.View.extend({
