@@ -12,9 +12,16 @@ requirejs.config({
   },
 
   paths: {
-    "jquery": "jquery",
-    "backbone.validation": "backbone-validation",
-    "moment": "moment.min"
+    "jquery": "jquery/jquery",
+    "foundation": "foundation/foundation.min",
+    "foundation.datepicker": "foundation/foundation-datepicker",
+    "underscore": "underscore/underscore",
+    "backbone": "backbone/backbone",
+    "backbone.validation": "backbone/backbone-validation",
+    "hogan": "hogan/hogan",
+    "hgn": "requirejs-plugins/hgn",
+    "text": "requirejs-plugins/text",
+    "moment": "moment/moment.min"
   },
 
   hgn: {
@@ -28,7 +35,7 @@ requirejs.config({
 
 requirejs(["jquery",
   "xpnsy/dashboard",
-  "foundation/foundation.min"
+  "foundation"
   ], function ($, dashboard) {
 
     $(document).foundation();

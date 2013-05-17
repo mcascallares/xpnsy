@@ -1,6 +1,6 @@
 define(['backbone',
   'backbone.validation',
-  'foundation/foundation-datepicker',
+  'foundation.datepicker',
   'xpnsy/models',
   'xpnsy/template.helper',
   'hgn!./templates/create-dialog'],
