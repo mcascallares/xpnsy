@@ -25,12 +25,14 @@ requirejs.config({
     "foundation/jquery.foundation.tabs": { deps: ["jquery"] },
     "foundation/jquery.foundation.tooltips": { deps: ["jquery"] },
     "foundation/jquery.foundation.topbar": { deps: ["jquery"] },
-    "foundation/jquery.placeholder": { deps: ["jquery"] }
+    "foundation/jquery.placeholder": { deps: ["jquery"] },
+    "foundation/foundation-datepicker": { deps: ["jquery"] }
   },
 
   paths: {
-    jquery: "jquery",
-    "backbone.validation": "backbone-validation"
+    "jquery": "jquery",
+    "backbone.validation": "backbone-validation",
+    "foundation.datepicker": "http://foundation-datepicker.peterbeno.com/example/js/foundation-datepicker.js"
   },
 
   hgn: {
@@ -59,7 +61,9 @@ requirejs(["jquery",
   "foundation/jquery.foundation.tabs",
   "foundation/jquery.foundation.tooltips",
   "foundation/jquery.foundation.topbar",
-  "foundation/jquery.placeholder"], function ($, dashboard) {
+  "foundation/jquery.placeholder",
+  "foundation/foundation-datepicker",
+  ], function ($, dashboard) {
 
   /**
    * Foundation - app.js:
@@ -81,6 +85,7 @@ requirejs(["jquery",
       $.fn.foundationMagellan         ? $doc.foundationMagellan() : null;
       $.fn.foundationClearing         ? $doc.foundationClearing() : null;
       $.fn.placeholder                ? $('input, textarea').placeholder() : null;
+      //$.fn.fdatepicker                ? $doc.fdatepicker() : null;
     });
 
     // UNCOMMENT THE LINE YOU WANT BELOW IF YOU WANT IE8 SUPPORT AND ARE USING .block-grids

@@ -8,7 +8,8 @@ define(['backbone',
 
         defaults: {
           label: null,
-          amount: null
+          amount: null,
+          when: new Date()
         },
 
         validation: {
@@ -16,6 +17,9 @@ define(['backbone',
             required: true
           },
           amount: {
+            required: true
+          },
+          when: {
             required: true
           }
         }
@@ -27,7 +31,7 @@ define(['backbone',
       url: '/expenses',
 
       comparator: function(expense) {
-        return -expense.get('updatedAtMs');
+        return -expense.get('whenMs');
       }
     });
 

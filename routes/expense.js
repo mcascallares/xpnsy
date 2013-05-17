@@ -4,6 +4,7 @@ exports.create = function(req, res) {
 	var expense = new Expense({
 		label: req.body.label,
 		amount: req.body.amount,
+		when: req.body.when,
 		user: req.user.id
 	});
 	expense.save(function(err, expense) {

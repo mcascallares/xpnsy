@@ -7,11 +7,15 @@ var mongoose = require('mongoose')
 var expenseSchema = new Schema({
 		amount: { type: Number, required: true },
 		label: { type: Schema.Types.ObjectId, ref: 'Label', required: true},
-		user: { type: Schema.Types.ObjectId, ref: 'User', required: true}
+		user: { type: Schema.Types.ObjectId, ref: 'User', required: true},
+		when: { type: Date, required: true},
 });
 expenseSchema.plugin(timestamps);
 expenseSchema.virtual('updatedAtMs').get(function () {
     return this.updatedAt.getTime();
+});
+expenseSchema.virtual('whenMs').get(function () {
+    return this.when.getTime();
 });
 expenseSchema.set('toObject', { getters: true });
 expenseSchema.set('toJSON', { getters: true });
@@ -38,6 +42,5 @@ expenseSchema.statics.findByUser = function(user, limit, offset, callback) {
 		.skip(offset)
 		.exec(callback);
 }
-
 
 exports.Expense = mongoose.model('Expense', expenseSchema, 'expenses');

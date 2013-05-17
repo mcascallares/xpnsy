@@ -24,13 +24,15 @@ define(['backbone',
             view.$('.js-cg-' + attr).addClass('error');
           }
         });
-        var me = this;
+
+        var self = this;
         $.get('/labels').done(function(response) {
           if (response.success) {
             var context = {
               labels: response.data
             };
-            me.$el.html(me.template(context));
+            self.$el.html(self.template(context));
+            $('.js-datepicker').fdatepicker('setValue', new Date());
           }
         });
         return this;
@@ -38,9 +40,10 @@ define(['backbone',
 
 
       events: {
-        'click .js-submit' : 'submit',
-        'change input' : 'changed',
-        'change select' : 'changed'
+        'click .js-submit': 'submit',
+        'change input': 'changed',
+        'change select': 'changed',
+        'changeDate': 'changed' // required by the datepicker
       },
 
 
@@ -53,15 +56,11 @@ define(['backbone',
       },
 
       submit: function() {
+        console.log(this.model);
         var self = this;
         this.model.save(null, {
           success: function(expense) {
-            // insert and remove the last to keep the page with constant size
-            console.log(expense);
             self.collection.add(expense);
-            var last = self.collection.at(self.collection.length - 1);
-            self.collection.remove(last);
-
             // re-start the model for a new expense
             self.initialize();
           }
