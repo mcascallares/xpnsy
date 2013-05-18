@@ -12,15 +12,18 @@ requirejs.config({
   },
 
   paths: {
+    "hogan": "hogan/hogan",
+    "hgn": "requirejs-plugins/hgn",
+    "text": "requirejs-plugins/text",
+    "goog": "requirejs-plugins/goog",
+    "async": "requirejs-plugins/async",
+    "propertyParser": "requirejs-plugins/propertyParser",
     "jquery": "jquery/jquery",
     "foundation": "foundation/foundation.min",
     "foundation.datepicker": "foundation/foundation-datepicker",
     "underscore": "underscore/underscore",
     "backbone": "backbone/backbone",
     "backbone.validation": "backbone/backbone-validation",
-    "hogan": "hogan/hogan",
-    "hgn": "requirejs-plugins/hgn",
-    "text": "requirejs-plugins/text",
     "moment": "moment/moment.min"
   },
 
