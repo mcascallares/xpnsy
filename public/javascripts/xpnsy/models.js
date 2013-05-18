@@ -7,12 +7,17 @@ define(['backbone',
         urlRoot: '/expenses',
 
         defaults: {
+          type: 'expense',
           label: null,
           amount: null,
           when: new Date()
         },
 
         validation: {
+          type: {
+            required: true,
+            oneOf: ['expense', 'income']
+          },
           label: {
             required: true
           },

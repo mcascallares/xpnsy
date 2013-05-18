@@ -12,7 +12,7 @@ var expenseSchema = new Schema({
 });
 expenseSchema.plugin(timestamps);
 expenseSchema.virtual('updatedAtMs').get(function () {
-    return this.updatedAt.getTime();
+    return this.updatedAt ? this.updatedAt.getTime() : undefined;
 });
 expenseSchema.virtual('whenMs').get(function () {
     return this.when.getTime();

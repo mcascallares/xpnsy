@@ -14,7 +14,6 @@ define(['backbone',
       initialize: function() {
         this.model = new models.Expense();
         this.render();
-        _.bindAll(this, 'changed');
       },
 
       render: function() {
@@ -38,25 +37,18 @@ define(['backbone',
         return this;
       },
 
-
       events: {
-        'click .js-submit': 'submit',
-        'change input': 'changed',
-        'change select': 'changed',
-        'changeDate': 'changed' // required by the datepicker
-      },
-
-
-      changed:function(evt) {
-        var changed = evt.currentTarget;
-        var value = $(evt.currentTarget).val();
-        var obj = {};
-        obj[changed.name] = value;
-        this.model.set(obj);
+        'click .js-submit': 'submit'
       },
 
       submit: function() {
-        console.log(this.model);
+        var expense = {
+          type: $('input[name="type"]:checked', this.$el).val(),
+          label: $('select[name="label"]', this.$el).val(),
+          when: $('input[name="when"]', this.$el).val(),
+          amount: $('input[name="amount"]', this.$el).val()
+        };
+        this.model.set(expense);
         var self = this;
         this.model.save(null, {
           success: function(expense) {
