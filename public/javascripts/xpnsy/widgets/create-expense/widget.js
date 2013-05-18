@@ -1,10 +1,10 @@
-define(['backbone',
+define(['jquery',
+  'backbone',
   'backbone.validation',
-  'foundation.datepicker',
   'xpnsy/models',
   'xpnsy/template.helper',
   'hgn!./templates/create-dialog'],
-  function(Backbone, validation, datepicker, models, templateHelper, dialogTemplate) {
+  function($, Backbone, validation, models, templateHelper, dialogTemplate) {
 
     var CreateExpenseView = Backbone.View.extend({
 
@@ -32,6 +32,7 @@ define(['backbone',
             labels: response
           });
           self.$el.html(self.template(templateData));
+          $.fn.foundation();
           $('.js-datepicker').fdatepicker('setValue', new Date());
         });
         return this;

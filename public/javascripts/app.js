@@ -35,7 +35,8 @@ requirejs.config({
 
 requirejs(["jquery",
   "xpnsy/dashboard",
-  "foundation"
+  "foundation",
+  "foundation.datepicker"
   ], function ($, dashboard) {
 
     $(document).foundation();
