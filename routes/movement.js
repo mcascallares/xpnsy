@@ -32,8 +32,6 @@ exports.totalExpensesPerLabel = function(req, res) {
 		since = new Date(now.getFullYear(), now.getMonth(), 1);
 	} else if (period == 'year') {
 		since = new Date(now.getFullYear(), 0, 1);
-	} else {
-		since = null;
 	}
 	Movement.totalExpensesPerLabel(req.user.id, since, function(err, totals) {
 		if (err) throw err;
