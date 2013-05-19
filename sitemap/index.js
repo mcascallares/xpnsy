@@ -4,7 +4,7 @@ var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn
 	, about = require('../routes/about')
 	, auth = require('../routes/auth')
   , dashboard = require('../routes/dashboard')
-  , expense = require('../routes/expense')
+  , movement = require('../routes/movement')
   , label = require('../routes/label');
 
 
@@ -21,6 +21,7 @@ exports.addRoutes = function(app, passport) {
 	app.post('/labels', ensureLoggedIn('/'), label.create);
 	app.get('/labels', ensureLoggedIn('/'), label.list);
 
-	app.post('/expenses', ensureLoggedIn('/'), expense.create);
-	app.get('/expenses', ensureLoggedIn('/'), expense.list);
+	app.post('/movements', ensureLoggedIn('/'), movement.create);
+	app.get('/movements', ensureLoggedIn('/'), movement.list);
+	app.get('/movements/totals/expense/:period', ensureLoggedIn('/'), movement.totalExpensesPerLabel);
 };

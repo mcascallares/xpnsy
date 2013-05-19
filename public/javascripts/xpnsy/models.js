@@ -2,9 +2,9 @@ define(['backbone',
   'backbone.validation'],
   function(Backbone, validation) {
 
-    var Expense = Backbone.Model.extend({
+    var Movement = Backbone.Model.extend({
 
-        urlRoot: '/expenses',
+        urlRoot: '/movements',
 
         defaults: {
           type: 'expense',
@@ -30,20 +30,20 @@ define(['backbone',
         }
     });
 
-    var ExpenseCollection = Backbone.Collection.extend({
-      model: Expense,
+    var MovementCollection = Backbone.Collection.extend({
+      model: Movement,
 
-      url: '/expenses',
+      url: '/movements',
 
-      comparator: function(expense) {
-        return -expense.get('whenMs');
+      comparator: function(movement) {
+        return -movement.get('whenMs');
       }
     });
 
 
     return {
-      Expense: Expense,
-      ExpenseCollection: ExpenseCollection
+      Movement: Movement,
+      MovementCollection: MovementCollection
     };
 
   }

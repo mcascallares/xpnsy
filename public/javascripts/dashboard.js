@@ -1,26 +1,27 @@
 require(['main',
-	'xpnsy/widgets/chart-expense/widget',
-	'xpnsy/widgets/create-expense/widget',
-	'xpnsy/widgets/list-expense/widget',
+	'xpnsy/widgets/chart-movement/widget',
+	'xpnsy/widgets/create-movement/widget',
+	'xpnsy/widgets/list-movement/widget',
 	'xpnsy/models'],
 
 	function(main, chartWidget, createWidget, listWidget, models) {
-		new chartWidget.ExpensePieChartView({
-			el: $('#chart-expense-widget')
+		new chartWidget.MovementPieChartView({
+			el: $('#chart-movement-widget')
 		});
 
 		// bootstrap data following bootstrap convention
-		$.get('/expenses').done(function(response) {
-			var expenses = new models.ExpenseCollection(response);
+		$.get('/movements').done(function(response) {
+			var movements = new models.MovementCollection(response);
 
-			new createWidget.CreateExpenseView({
-					el: $('#create-expense-widget'),
-					collection: expenses
+			new createWidget.CreateMovementView({
+				collection: movements,
+				el: $('#create-movement-widget')
+
 			});
 
-			new listWidget.ListExpenseView({
-				collection: expenses,
-				el: $('#list-expense-widget')
+			new listWidget.ListMovementView({
+				collection: movements,
+				el: $('#list-movement-widget')
 			});
 		});
 	}

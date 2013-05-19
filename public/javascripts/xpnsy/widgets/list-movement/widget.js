@@ -4,7 +4,7 @@ define(['backbone',
   'hgn!./templates/list-item'],
   function(Backbone, templateHelper, listTemplate, itemTemplate) {
 
-    var ExpenseView = Backbone.View.extend({
+    var MovementView = Backbone.View.extend({
 
       template: itemTemplate,
 
@@ -21,7 +21,7 @@ define(['backbone',
     });
 
 
-    var ListExpenseView = Backbone.View.extend({
+    var ListMovementView = Backbone.View.extend({
 
       template: listTemplate,
 
@@ -37,25 +37,21 @@ define(['backbone',
 
       render: function() {
         this.$el.html($(this.template()));
-        this.collection.each(function(expense) {
-          var expenseView = new ExpenseView({
+        this.collection.each(function(movement) {
+          var movementView = new MovementView({
             el: $('.js-items', this.$el),
-            model: expense
+            model: movement
           });
         });
 
         return this;
-      },
-
-      reset: function() {
-        console.log('reset');
       }
 
     });
 
 
     return {
-      ListExpenseView: ListExpenseView
+      ListMovementView: ListMovementView
     };
 
   }

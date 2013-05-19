@@ -6,13 +6,13 @@ define(['jquery',
   'hgn!./templates/create-dialog'],
   function($, Backbone, validation, models, templateHelper, dialogTemplate) {
 
-    var CreateExpenseView = Backbone.View.extend({
+    var CreateMovementView = Backbone.View.extend({
 
       id: null,
       template: dialogTemplate,
 
       initialize: function() {
-        this.model = new models.Expense();
+        this.model = new models.Movement();
         this.render();
       },
 
@@ -43,18 +43,18 @@ define(['jquery',
       },
 
       submit: function() {
-        var expense = {
+        var movement = {
           type: $('input[name="type"]:checked', this.$el).val(),
           label: $('select[name="label"]', this.$el).val(),
           when: $('input[name="when"]', this.$el).val(),
           amount: $('input[name="amount"]', this.$el).val()
         };
-        this.model.set(expense);
+        this.model.set(movement);
         var self = this;
         this.model.save(null, {
-          success: function(expense) {
-            self.collection.add(expense);
-            // re-start the model for a new expense
+          success: function(movement) {
+            self.collection.add(movement);
+            // re-start the model for a new movement
             self.initialize();
           }
         });
@@ -64,7 +64,7 @@ define(['jquery',
 
 
     return {
-      CreateExpenseView: CreateExpenseView
+      CreateMovementView: CreateMovementView
     };
 
   }
