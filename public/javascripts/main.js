@@ -37,16 +37,8 @@ requirejs.config({
 });
 
 requirejs(["jquery",
-  "xpnsy/dashboard",
   "foundation",
   "foundation.datepicker"
-  ], function ($, dashboard) {
-
+  ], function ($) {
     $(document).foundation();
-
-    // TODO add a dispatcher logic here to know which AMD we have to init
-    if (window.location.href.indexOf("/dashboard") !== -1) {
-      //console.log(dashboard);
-      dashboard.init()
-    }
 });
