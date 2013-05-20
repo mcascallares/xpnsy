@@ -17,7 +17,13 @@
   <link rel="stylesheet" href="stylesheets/foundation-datepicker.css">
 
   <script src="javascripts/foundation/custom.modernizr.js"></script>
-  <script data-main="javascripts/{{ jsModule }}" src="javascripts/require.js"></script>
+  <script src="javascripts/require-jquery.js"></script>
+  <script type="text/javascript">
+    // ./js/common.js sets the baseUrl to be ./javascripts/
+    require(['./javascripts/common'], function (common) {
+      require(['{{jsModule}}']);
+    });
+  </script>
 </head>
 
 <body>

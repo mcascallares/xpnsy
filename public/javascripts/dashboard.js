@@ -1,17 +1,16 @@
-require(['requirejs-config'], function() {
+define([
+	'jquery',
+  'foundation',
+  'foundation.datepicker',
+	'xpnsy/widgets/chart-movement/widget',
+	'xpnsy/widgets/create-movement/widget',
+	'xpnsy/widgets/list-movement/widget',
+	'xpnsy/models'],
 
-	require([
-		'jquery',
-	  'foundation',
-	  'foundation.datepicker',
-		'xpnsy/widgets/chart-movement/widget',
-		'xpnsy/widgets/create-movement/widget',
-		'xpnsy/widgets/list-movement/widget',
-		'xpnsy/models'],
+	function($, foundation, foundationDatePicker,
+		chartWidget, createWidget, listWidget, models) {
 
-		function($, foundation, foundationDatePicker,
-			chartWidget, createWidget, listWidget, models) {
-
+		$(function() {
 			$(document).foundation();
 
 			// bootstrap data following bootstrap convention
@@ -34,7 +33,6 @@ require(['requirejs-config'], function() {
 					el: $('#chart-widget')
 				});
 			});
-		}
-	)
-
-});
+		});
+	}
+);

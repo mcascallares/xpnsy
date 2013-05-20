@@ -1,12 +1,11 @@
-require(['requirejs-config'], function() {
+define([
+	'jquery',
+  'foundation'
+  ],
 
-	require([
-		'jquery',
-	  'foundation'
-	], function($, foundation) {
-
-		$(document).foundation();
-
-	});
-
-});
+	function($, foundation) {
+		$(function() {
+			$(document).foundation();
+		});
+	}
+);
