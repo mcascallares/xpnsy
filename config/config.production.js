@@ -2,7 +2,7 @@
 var config = module.exports = {};
 
 config.env = 'production';
-config.host = 'http://xpnsy.azurewebsites.net';
+config.host = 'xpnsy.azurewebsites.net';
 config.port = process.env.PORT || 3000;
 config.cookieSecret = 'aldksdkljdskljsdklsdj-092fewjwefkmf';
 
