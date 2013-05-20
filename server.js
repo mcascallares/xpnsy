@@ -10,7 +10,6 @@ var express = require('express')
 
 // db connection initialization
 mongoose.connect(config.mongo.uri, {replSet: {socketOptions: {socketTimeoutMS: 200000}}});
-console.log(mongoose);
 
 // express setup
 var app = express();

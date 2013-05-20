@@ -1,5 +1,6 @@
 var mongoose = require('mongoose')
 	, Schema = mongoose.Schema
+	, ObjectId = mongoose.Types.ObjectId
 	, timestamps = require('mongoose-timestamp')
 	, Label = require('./label').Label;
 
@@ -43,10 +44,10 @@ movementSchema.statics.findByUser = function(user, limit, offset, callback) {
 		.exec(callback);
 }
 
-
+ObjectId = require('mongoose').Types.ObjectId;
 movementSchema.statics.totalsPerLabel = function(condition, user, since, callback) {
 		var aggregation = [ condition,
-			{ $match: {user: user}},
+			{ $match: {user: new ObjectId(user)}},
 			// hack to bypass since condition in case since is null
 			since ? { $match: { when: { $gte: since }}} : { $match: { when: { $exists: true }}},
 			{ $project: { label: 1, amount: 1, _id: -1}},
