@@ -44,8 +44,9 @@ movementSchema.statics.findByUser = function(user, limit, offset, callback) {
 }
 
 
-movementSchema.statics.totalsPerLabel = function(condition, since, callback) {
+movementSchema.statics.totalsPerLabel = function(condition, user, since, callback) {
 		var aggregation = [ condition,
+			{ $match: {user: user}},
 			// hack to bypass since condition in case since is null
 			since ? { $match: { when: { $gte: since }}} : { $match: { when: { $exists: true }}},
 			{ $project: { label: 1, amount: 1, _id: -1}},
@@ -76,11 +77,11 @@ movementSchema.statics.totalsPerLabel = function(condition, since, callback) {
 }
 
 movementSchema.statics.totalExpensesPerLabel = function(user, since, callback) {
-	this.totalsPerLabel({ $match: { amount: { '$lt': 0 }}}, since, callback);
+	this.totalsPerLabel({ $match: { amount: { '$lt': 0 }}}, user, since, callback);
 };
 
 movementSchema.statics.totalIncomesPerLabel = function(user, since, callback) {
-	this.totalsPerLabel({ $match: { amount: { '$gt': 0 }}}, since, callback);
+	this.totalsPerLabel({ $match: { amount: { '$gt': 0 }}}, user, since, callback);
 };
 
 exports.Movement = mongoose.model('Movement', movementSchema, 'movements');
