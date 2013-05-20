@@ -36,7 +36,7 @@ define(['backbone',
       url: '/movements',
 
       comparator: function(movement) {
-        return -movement.get('whenMs');
+        return -movement.get('createdMs');
       }
     });
 
