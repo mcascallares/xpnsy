@@ -2,7 +2,7 @@
   "name": "xpnsy",
   "version": "0.0.1",
   "private": true,
-  "engines":{"node": "0.8.x"}
+  "engines":{"node": "0.8.x"},
   "main": "server.js",
   "scripts": {
     "start": "node app.js"
