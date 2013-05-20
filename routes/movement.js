@@ -24,7 +24,7 @@ exports.list = function(req, res) {
 	});
 };
 
-exports.totalExpensesPerLabel = function(req, res) {
+var getSince = function(req) {
 	var period = req.params.period;
 	var now = new Date();
 	var since = null;
@@ -33,7 +33,18 @@ exports.totalExpensesPerLabel = function(req, res) {
 	} else if (period == 'year') {
 		since = new Date(now.getFullYear(), 0, 1);
 	}
-	Movement.totalExpensesPerLabel(req.user.id, since, function(err, totals) {
+	return since;
+};
+
+exports.totalExpensesPerLabel = function(req, res) {
+	Movement.totalExpensesPerLabel(req.user.id, getSince(req), function(err, totals) {
+		if (err) throw err;
+		res.json(totals);
+	});
+};
+
+exports.totalIncomesPerLabel = function(req, res) {
+	Movement.totalIncomesPerLabel(req.user.id, getSince(req), function(err, totals) {
 		if (err) throw err;
 		res.json(totals);
 	});

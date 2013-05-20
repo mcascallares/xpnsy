@@ -24,4 +24,5 @@ exports.addRoutes = function(app, passport) {
 	app.post('/movements', ensureLoggedIn('/'), movement.create);
 	app.get('/movements', ensureLoggedIn('/'), movement.list);
 	app.get('/movements/totals/expense/:period', ensureLoggedIn('/'), movement.totalExpensesPerLabel);
+	app.get('/movements/totals/income/:period', ensureLoggedIn('/'), movement.totalIncomesPerLabel);
 };

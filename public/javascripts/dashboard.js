@@ -22,9 +22,9 @@ require(['main',
 				el: $('#list-movement-widget')
 			});
 
-			new chartWidget.MovementPieChartView({
+			new chartWidget.ChartView({
 				collection: movements,
-				el: $('#chart-movement-widget')
+				el: $('#chart-widget')
 			});
 		});
 	}

@@ -1,23 +1,92 @@
 define(['jquery',
   'goog!visualization,1,packages:[corechart]',
-  'hgn!./templates/chart'],
-  function($, googleChart, chartTemplate) {
+  'hgn!./templates/chart',
+  'hgn!./templates/movements',
+  ],
+  function($, googleChart, chartTemplate, movementsChartTemplate) {
 
-
-    var MovementPieChartView = Backbone.View.extend({
+    var ChartView = Backbone.View.extend({
 
       template: chartTemplate,
+
+      initialize: function() {
+        this.render();
+
+        this.expensesView = new MovementsChartView({
+          el: $('#expenses-chart', this.$el),
+          collection: this.collection,
+          charts: {
+            showCurrentMonth: {
+              endpoint: '/movements/totals/expense/month',
+              title: 'Expenses in this month'
+            },
+            showCurrentYear: {
+              endpoint: '/movements/totals/expense/year',
+              title: 'Expenses in this year'
+            },
+            showAll: {
+              endpoint: '/movements/totals/expense/all',
+              title: 'All my expenses'
+            }
+          }
+        });
+
+        this.incomesView = new MovementsChartView({
+          el: $('#incomes-chart', this.$el),
+          collection: this.collection,
+          charts: {
+            showCurrentMonth: {
+              endpoint: '/movements/totals/income/month',
+              title: 'Incomes in this month'
+            },
+            showCurrentYear: {
+              endpoint: '/movements/totals/income/year',
+              title: 'Incomes in this year'
+            },
+            showAll: {
+              endpoint: '/movements/totals/income/all',
+              title: 'All my incomes'
+            }
+          }
+        });
+
+        this.showExpenses();
+      },
+
+      render: function() {
+        this.$el.html(this.template());
+        $(document).foundation(); // required to use foundation sections after dom injection
+        return this;
+      },
+
+      events: {
+        'click .js-show-expenses': 'showExpenses',
+        'click .js-show-incomes': 'showIncomes'
+      },
+
+      showExpenses: function() {
+        this.expensesView.render();
+      },
+
+      showIncomes: function() {
+        this.incomesView.render();
+      },
+
+    });
+
+
+    var MovementsChartView = Backbone.View.extend({
+
+      template: movementsChartTemplate,
 
       initialize: function() {
         _.bindAll(this);
         this.collection.bind('add', this.render);
         this.collection.bind('remove', this.render);
-        this.render();
       },
 
       render: function() {
         this.$el.html(this.template());
-        $(document).foundation();
         this.showCurrentMonth();
         return this;
       },
@@ -26,27 +95,31 @@ define(['jquery',
         $('.js-show-all', this.$el).removeClass('active');
         $('.js-show-current-year', this.$el).removeClass('active');
         $('.js-show-current-month', this.$el).addClass('active');
-        this.generatePieChart('/movements/totals/expense/month', 'Expenses in this month');
+        var options = this.options.charts.showCurrentMonth;
+        this.generatePieChart(options.endpoint, options.title);
       },
 
       showCurrentYear: function() {
         $('.js-show-current-month', this.$el).removeClass('active');
         $('.js-show-all', this.$el).removeClass('active');
         $('.js-show-current-year', this.$el).addClass('active');
-        this.generatePieChart('/movements/totals/expense/year', 'Expenses in this year');
+        var options = this.charts.showCurrentYear;
+        this.generatePieChart(options.endpoint, options.title);
       },
 
       showAll: function() {
         $('.js-show-current-year', this.$el).removeClass('active');
         $('.js-show-current-month', this.$el).removeClass('active');
         $('.js-show-all', this.$el).addClass('active');
-        this.generatePieChart('/movements/totals/expense/all', 'All my expenses');
+        var options = this.charts.showCurrentAll;
+        this.generatePieChart(options.endpoint, options.title);
       },
 
       generatePieChart: function(endpoint, title) {
+        console.log('Generating chart');
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Label');
-        data.addColumn('number', 'Total amount');
+        data.addColumn('number', 'Total');
 
         var options = {
           'title':'Title',
@@ -62,8 +135,7 @@ define(['jquery',
           response.forEach(function(item) {
             data.addRow([item.label, item.total]);
           });
-
-          var chart = new google.visualization.PieChart($('#chartContainer', this.$el)[0]);
+          var chart = new google.visualization.PieChart($('.js-chart-container', self.$el)[0]);
           chart.draw(data, options);
         });
       },
@@ -77,7 +149,7 @@ define(['jquery',
     });
 
     return {
-      MovementPieChartView: MovementPieChartView
+      ChartView: ChartView
     };
 
   }
