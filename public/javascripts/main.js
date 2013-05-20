@@ -1,4 +1,6 @@
 requirejs.config({
+  baseUrl: "javascripts",
+
   shim: {
     "underscore": { exports: "_" },
     "backbone": {
