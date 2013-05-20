@@ -15,5 +15,5 @@ config.mongo = {
 config.facebook = {
 	clientID: 493919190675289,
 	clientSecret: 'a3db1fbac3d4907b207ba3dd980e74e1',
-	callbackURL: 'http://' + config.host + ':' + config.port + '/auth/facebook/callback'
+	callbackURL: 'http://' + config.host + '/auth/facebook/callback'
 }
