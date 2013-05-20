@@ -4,7 +4,7 @@ var config = module.exports = {};
 config.env = 'production';
 config.host = 'xpnsy.azurewebsites.net';
 config.port = process.env.PORT;
-config.cookieSecret = process.env.CookieS;
+config.cookieSecret = process.env.CookieSecret;
 
 //mongo database
 config.mongo = {
