@@ -9,7 +9,9 @@ var express = require('express')
   , config = require('./config');
 
 // db connection initialization
-mongoose.connect(config.mongo.uri);
+//mongoose.connect();
+mongoose.connect(process.env.CUSTOMCONNSTR_MONGOLAB_URI,
+   {replSet: {socketOptions: {socketTimeoutMS: 200000}}});
 
 // express setup
 var app = express();
