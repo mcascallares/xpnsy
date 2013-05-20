@@ -1,13 +1,24 @@
 <fieldset>
-	<legend>Stats</legend>
+	<legend>Overview</legend>
 
-	<dl class="sub-nav">
-    <dt>Period:</dt>
-    <dd class="js-show-current-month active"><a href="javascript:void(0)">Current month</a></dd>
-    <dd class="js-show-current-year"><a href="javascript:void(0)">Current year</a></dd>
-    <dd class="js-show-all"><a href="javascript:void(0)">All</a></dd>
-  </dl>
-
-  <div id="chartContainer"></div>
-
+	<div class="section-container auto" data-section>
+	  <section>
+	    <p class="title" data-section-title><a href="#panel1">Expenses</a></p>
+	    <div class="content" data-section-content>
+	      	<dl class="sub-nav">
+				    <dt>Period:</dt>
+				    <dd class="js-show-current-month active"><a href="javascript:void(0)">Current month</a></dd>
+				    <dd class="js-show-current-year"><a href="javascript:void(0)">Current year</a></dd>
+				    <dd class="js-show-all"><a href="javascript:void(0)">All</a></dd>
+				  </dl>
+				  <div id="chartContainer"></div>
+	    </div>
+	  </section>
+	  <section>
+	    <p class="title" data-section-title><a href="#panel2">Incomes</a></p>
+	    <div class="content" data-section-content>
+	      <p>Content of section 2.</p>
+	    </div>
+	  </section>
+	</div>
 </fieldset>

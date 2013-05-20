@@ -3,6 +3,7 @@ define(['jquery',
   'hgn!./templates/chart'],
   function($, googleChart, chartTemplate) {
 
+
     var MovementPieChartView = Backbone.View.extend({
 
       template: chartTemplate,
@@ -16,24 +17,28 @@ define(['jquery',
 
       render: function() {
         this.$el.html(this.template());
+        $(document).foundation();
         this.showCurrentMonth();
         return this;
       },
 
       showCurrentMonth: function() {
-        $('.active', this.$el).removeClass('active');
+        $('.js-show-all', this.$el).removeClass('active');
+        $('.js-show-current-year', this.$el).removeClass('active');
         $('.js-show-current-month', this.$el).addClass('active');
         this.generatePieChart('/movements/totals/expense/month', 'Expenses in this month');
       },
 
       showCurrentYear: function() {
-        $('.active', this.$el).removeClass('active');
+        $('.js-show-current-month', this.$el).removeClass('active');
+        $('.js-show-all', this.$el).removeClass('active');
         $('.js-show-current-year', this.$el).addClass('active');
         this.generatePieChart('/movements/totals/expense/year', 'Expenses in this year');
       },
 
       showAll: function() {
-        $('.active', this.$el).removeClass('active');
+        $('.js-show-current-year', this.$el).removeClass('active');
+        $('.js-show-current-month', this.$el).removeClass('active');
         $('.js-show-all', this.$el).addClass('active');
         this.generatePieChart('/movements/totals/expense/all', 'All my expenses');
       },
