@@ -11,12 +11,34 @@ module.exports = function(grunt) {
         options: {
           baseUrl: 'public/javascripts',
           dir: 'public/javascripts-built',
-          mainConfigFile: 'public/javascripts/main.js',
+          mainConfigFile: 'public/javascripts/requirejs-config.js',
           optimize: 'uglify', // set to 'none' if you want to disable
-          stubModules : ['text', 'hgn'],
+          //stubModules : ['text', 'hgn'],
           modules: [
-              { name: 'main' },
-              { name: 'dashboard' }
+          {
+            //module names are relative to baseUrl
+            name: 'requirejs-config',
+            //List common dependencies here. Only need to list
+            //top level dependencies, "include" will find
+            //nested dependencies.
+            include: ['jquery',
+                      'foundation',
+                      'foundation.datepicker'
+            ]
+          },
+
+          {
+            name: 'home',
+            exclude: ['requirejs-config']
+          },
+          {
+            name: 'dashboard',
+            exclude: ['requirejs-config']
+          },
+          {
+            name: 'about',
+            exclude: ['requirejs-config']
+          }
           ]
         }
       }
