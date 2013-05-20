@@ -8,7 +8,7 @@ config.cookieSecret = 'aldksdkljdskljsdklsdj-092fewjwefkmf';
 
 //mongo database
 config.mongo = {
-	uri: 'mongodb://MongoLab-tr:09c2eS4oi1knkTMYrAEIWHvqsC7FssqgL7W5fcaeUVA-@ds041157.mongolab.com:41157/MongoLab-tr'
+	uri: 'mongodb://admin:mocosoft123@ds041157.mongolab.com:41157/MongoLab-tr'
 };
 
 // facebook integration
