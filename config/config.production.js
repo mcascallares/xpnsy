@@ -8,7 +8,7 @@ config.cookieSecret = process.env.CookieS;
 
 //mongo database
 config.mongo = {
-	uri: pocess.env.CUSTOMCONNSTR_MONGOLAB_URI
+	uri: process.env.CUSTOMCONNSTR_MONGOLAB_URI
 };
 
 // facebook integration
