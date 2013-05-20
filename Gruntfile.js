@@ -6,39 +6,38 @@ module.exports = function(grunt) {
 
     pkg: grunt.file.readJSON('package.json'),
 
+    // see http://robdodson.me/blog/2012/11/18/a-require-dot-js-multipage-shimmed-site-how-to/
     requirejs: {
       compile: {
         options: {
           baseUrl: 'public/javascripts',
           dir: 'public/javascripts-built',
-          mainConfigFile: 'public/javascripts/requirejs-config.js',
+          mainConfigFile: 'public/javascripts/common.js',
           optimize: 'uglify', // set to 'none' if you want to disable
-          //stubModules : ['text', 'hgn'],
           modules: [
-          {
-            //module names are relative to baseUrl
-            name: 'requirejs-config',
-            //List common dependencies here. Only need to list
-            //top level dependencies, "include" will find
-            //nested dependencies.
-            include: ['jquery',
-                      'foundation',
-                      'foundation.datepicker'
-            ]
-          },
+            {
+              name: 'common',
+              include: ['jquery',
+                        'foundation',
+                        'foundation.datepicker'
+              ],
+              exclude: ['jquery']
+            },
 
-          {
-            name: 'home',
-            exclude: ['requirejs-config']
-          },
-          {
-            name: 'dashboard',
-            exclude: ['requirejs-config']
-          },
-          {
-            name: 'about',
-            exclude: ['requirejs-config']
-          }
+            {
+              name: 'dashboard',
+              exclude: ['common', 'jquery']
+            },
+
+            {
+              name: 'about',
+              exclude: ['common', 'jquery']
+            },
+
+            {
+              name: 'home',
+              exclude: ['common', 'jquery']
+            }
           ]
         }
       }
