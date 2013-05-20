@@ -2,7 +2,7 @@
 # should be disabled in production deployments:
 
 loggingEnabled: true
-debuggingEnabled: false
+debuggingEnabled: true
 devErrorsEnabled: true
 node_env: production
 
