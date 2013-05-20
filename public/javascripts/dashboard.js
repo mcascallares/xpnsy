@@ -5,9 +5,7 @@ require(['main',
 	'xpnsy/models'],
 
 	function(main, chartWidget, createWidget, listWidget, models) {
-		new chartWidget.MovementPieChartView({
-			el: $('#chart-movement-widget')
-		});
+
 
 		// bootstrap data following bootstrap convention
 		$.get('/movements').done(function(response) {
@@ -22,6 +20,11 @@ require(['main',
 			new listWidget.ListMovementView({
 				collection: movements,
 				el: $('#list-movement-widget')
+			});
+
+			new chartWidget.MovementPieChartView({
+				collection: movements,
+				el: $('#chart-movement-widget')
 			});
 		});
 	}

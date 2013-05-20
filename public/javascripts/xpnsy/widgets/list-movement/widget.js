@@ -26,10 +26,7 @@ define(['backbone',
       template: listTemplate,
 
       initialize: function() {
-        // bind the functions 'add' and 'remove' to the view.
-        //_(this).bindAll('add', 'remove', 'render');
         _.bindAll(this);
-
         this.collection.bind('add', this.render);
         this.collection.bind('remove', this.render);
         this.render();

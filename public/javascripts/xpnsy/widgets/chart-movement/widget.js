@@ -8,6 +8,9 @@ define(['jquery',
       template: chartTemplate,
 
       initialize: function() {
+        _.bindAll(this);
+        this.collection.bind('add', this.render);
+        this.collection.bind('remove', this.render);
         this.render();
       },
 
