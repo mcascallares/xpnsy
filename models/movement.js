@@ -21,7 +21,6 @@ movementSchema.virtual('whenMs').get(function () {
 movementSchema.set('toObject', { getters: true });
 movementSchema.set('toJSON', { getters: true });
 
-
 movementSchema.pre('save', function(next) {
 	var movement = this;
 
@@ -35,6 +34,9 @@ movementSchema.pre('save', function(next) {
 		}
 	});
 });
+
+movementSchema.index({user : 1, when: -1});
+movementSchema.index({when : -1});
 
 movementSchema.statics.findByUser = function(user, limit, offset, callback) {
 	this.find({ user: user }).populate('label')

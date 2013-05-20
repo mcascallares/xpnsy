@@ -9,4 +9,6 @@ var userSchema = new Schema({
 });
 userSchema.plugin(findOrCreate);
 
+userSchema.index({provider: 1, providerId: 1});
+
 exports.User = mongoose.model('User', userSchema, 'users');

@@ -9,6 +9,7 @@ var labelSchema = new Schema({
 });
 labelSchema.plugin(findOrCreate);
 
+labelSchema.index({user : 1});
 
 labelSchema.statics.findByUser = function (user, callback) {
 	this.find({ user: user })
