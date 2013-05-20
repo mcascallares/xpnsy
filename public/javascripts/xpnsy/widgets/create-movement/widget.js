@@ -39,7 +39,28 @@ define(['jquery',
       },
 
       events: {
-        'click .js-submit': 'submit'
+        'click .js-submit': 'submit',
+        'change select[name="label"]': 'labelChanged'
+      },
+
+      labelChanged: function() {
+        var selectElement = $('select[name="label"]', this.$el);
+        var value = selectElement.val();
+        if (value == 'new') {
+          var name = prompt("Please enter label name");
+          if (name === null || name === '') {
+            selectElement.val('');
+            return;
+          }
+
+          $.post('/labels', {name: name}).done(function(response) {
+            console.log(response);
+            var option = new Option(response.name, response._id);
+            selectElement.append(option);
+            selectElement.val(response._id);
+          });
+
+        }
       },
 
       submit: function() {

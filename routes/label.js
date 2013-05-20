@@ -2,7 +2,7 @@ var Label = require('../models/label').Label;
 
 exports.create = function(req, res) {
 	var label = new Label({
-		name: "this is the name",
+		name: req.body.name,
 		user: req.user.id
 	});
 
@@ -12,7 +12,6 @@ exports.create = function(req, res) {
 			res.json(label);
 		});
 };
-
 
 exports.list = function(req, res) {
 	Label.findByUser(req.user.id,
