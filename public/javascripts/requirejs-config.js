@@ -31,16 +31,6 @@ requirejs.config({
 
   hgn: {
     templateExtension: ".html"
-  },
+  }
 
-  name: "app",
-  out: "app.min.js"
-
-});
-
-requirejs(["jquery",
-  "foundation",
-  "foundation.datepicker"
-  ], function ($) {
-    $(document).foundation();
 });
