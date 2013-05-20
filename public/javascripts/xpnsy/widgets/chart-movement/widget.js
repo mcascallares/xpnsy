@@ -103,7 +103,7 @@ define(['jquery',
         $('.js-show-current-month', this.$el).removeClass('active');
         $('.js-show-all', this.$el).removeClass('active');
         $('.js-show-current-year', this.$el).addClass('active');
-        var options = this.charts.showCurrentYear;
+        var options = this.options.charts.showCurrentYear;
         this.generatePieChart(options.endpoint, options.title);
       },
 
@@ -111,7 +111,7 @@ define(['jquery',
         $('.js-show-current-year', this.$el).removeClass('active');
         $('.js-show-current-month', this.$el).removeClass('active');
         $('.js-show-all', this.$el).addClass('active');
-        var options = this.charts.showCurrentAll;
+        var options = this.options.charts.showCurrentAll;
         this.generatePieChart(options.endpoint, options.title);
       },
 
