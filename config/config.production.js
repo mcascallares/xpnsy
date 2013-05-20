@@ -13,7 +13,7 @@ config.mongo = {
 
 // facebook integration
 config.facebook = {
-	clientID: 1234567890,
+	clientID: 493919190675289,
 	clientSecret: process.env.FacebookClientSecret,
 	callbackURL: 'http://' + config.host + '/auth/facebook/callback'
 }
